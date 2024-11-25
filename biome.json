@@ -2,15 +2,7 @@
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "files": {
     "ignoreUnknown": true,
-    "ignore": [
-      "node_modules/**/*",
-      "dist/**/*",
-      "dev-dist/**/*",
-      "coverage/**/*",
-      "public/**/*",
-      "route-tree.gen.ts",
-      "vite-env.d.ts"
-    ]
+    "ignore": ["node_modules/**/*", "dist/**/*", ".next/**/*", "coverage/**/*", "public/**/*"]
   },
   "formatter": {
     "enabled": true,
@@ -56,27 +48,11 @@
         "noHeadImportInDocument": "error",
         "noDocumentCookie": "error",
         "useCollapsedIf": "error",
-        "useExplicitType": "error"
+        "useExplicitType": "error",
+        "useSortedClasses": "error"
       }
     }
   },
-  "overrides": [
-    {
-      "include": ["*.astro"],
-      "linter": {
-        "rules": {
-          "style": {
-            "useConst": "off",
-            "useImportType": "off"
-          },
-          "correctness": {
-            "noUnusedImports": "off",
-            "noUnusedVariables": "off"
-          }
-        }
-      }
-    }
-  ],
   "javascript": {
     "formatter": {
       "trailingCommas": "none",
