@@ -9,6 +9,7 @@ export default defineConfig({
       clean: true,
       httpClient: 'fetch',
       client: 'react-query',
+      baseUrl: 'http://localhost:3000',
       mock: false,
       mode: 'tags'
     }

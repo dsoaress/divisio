@@ -9,8 +9,7 @@ const envSchema = z
     REDIS_URL: z.string().url(),
     GOOGLE_CLIENT_ID: z.string().optional(),
     GOOGLE_CLIENT_SECRET: z.string().optional(),
-    GOOGLE_OAUTH_REDIRECT_URL: z.string().url(),
-    CLIENT_URL: z.string().url().default('http://localhost:3001')
+    GOOGLE_OAUTH_REDIRECT_URL: z.string().url()
   })
   .refine(data => {
     const isCIEnv = data.NODE_ENV === 'ci' || data.NODE_ENV === 'test'

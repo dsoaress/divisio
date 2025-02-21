@@ -5,6 +5,7 @@
     "dev": "tsx watch --clear-screen=false src/main.ts",
     "build": "tsc && tsup",
     "start": "node dist/main.js",
+    "openapi:generate": "tsx src/infra/http/docs/docs.module.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:seed": "tsx src/infra/database/drizzle/seed"

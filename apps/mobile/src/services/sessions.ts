@@ -19,7 +19,7 @@ export type postSessionsRefreshResponse = {
 }
 
 export const getPostSessionsRefreshUrl = () => {
-  return '/sessions/refresh'
+  return 'http://localhost:3000/sessions/refresh'
 }
 
 export const postSessionsRefresh = async (
