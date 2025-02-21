@@ -9,7 +9,7 @@ export default function Index(): React.JSX.Element {
         alignItems: 'center'
       }}
     >
-      <Text>Olá mundo</Text>
+      <Text>Olá mundo, isso é um teste!</Text>
     </View>
   )
 }

@@ -61,6 +61,18 @@
       }
     }
   },
+  "overrides": [
+    {
+      "include": ["./apps/mobile/src/services/*.ts"],
+      "linter": {
+        "rules": {
+          "nursery": {
+            "useExplicitType": "off"
+          }
+        }
+      }
+    }
+  ],
   "javascript": {
     "formatter": {
       "trailingCommas": "none",
