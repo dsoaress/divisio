@@ -17,7 +17,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export default function RootLayout({ children }: Readonly<Props>): JSX.Element {
+export default function RootLayout({ children }: Readonly<Props>): React.JSX.Element {
   return (
     <html lang="en">
       <body className={`${fontSans.variable} font-sans antialiased`}>{children}</body>
