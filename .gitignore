@@ -14,8 +14,8 @@ node_modules/
 .env
 
 # Build output
-.astro
 .expo
+.next
 out
 dist
 dist-ssr

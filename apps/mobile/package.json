@@ -1,6 +1,7 @@
 {
   "name": "mobile",
   "main": "expo-router/entry",
+  "private": true,
   "scripts": {
     "dev": "expo start",
     "orval": "orval"
