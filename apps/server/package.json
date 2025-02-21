@@ -1,5 +1,6 @@
 {
   "name": "server",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "tsx watch --clear-screen=false src/main.ts",

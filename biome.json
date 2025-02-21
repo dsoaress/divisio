@@ -61,33 +61,6 @@
       }
     }
   },
-  "overrides": [
-    {
-      "include": ["*.astro"],
-      "linter": {
-        "rules": {
-          "style": {
-            "useConst": "off",
-            "useImportType": "off"
-          },
-          "correctness": {
-            "noUnusedImports": "off",
-            "noUnusedVariables": "off"
-          }
-        }
-      }
-    },
-    {
-      "include": ["*.tsx"],
-      "linter": {
-        "rules": {
-          "nursery": {
-            "useExplicitType": "off"
-          }
-        }
-      }
-    }
-  ],
   "javascript": {
     "formatter": {
       "trailingCommas": "none",
