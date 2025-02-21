@@ -2,7 +2,6 @@ import '../styles/globals.css'
 
 import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
-import type { JSX, ReactNode } from 'react'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -15,7 +14,7 @@ export const metadata: Metadata = {
 }
 
 type Props = {
-  children: ReactNode
+  children: React.ReactNode
 }
 
 export default function RootLayout({ children }: Readonly<Props>): JSX.Element {
