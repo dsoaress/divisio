@@ -63,22 +63,7 @@
   },
   "overrides": [
     {
-      "include": ["*.astro"],
-      "linter": {
-        "rules": {
-          "style": {
-            "useConst": "off",
-            "useImportType": "off"
-          },
-          "correctness": {
-            "noUnusedImports": "off",
-            "noUnusedVariables": "off"
-          }
-        }
-      }
-    },
-    {
-      "include": ["*.tsx", "./apps/mobile/src/services/*.ts"],
+      "include": ["./apps/mobile/src/services/*.ts"],
       "linter": {
         "rules": {
           "nursery": {

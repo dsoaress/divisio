@@ -5,7 +5,7 @@ import {} from '@/hooks/use-app-state'
 
 const queryClient = new QueryClient()
 
-export default function RootLayout() {
+export default function RootLayout(): React.JSX.Element {
   return (
     <QueryClientProvider client={queryClient}>
       <Stack screenOptions={{ headerShown: false }}>
