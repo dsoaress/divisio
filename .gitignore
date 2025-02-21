@@ -20,6 +20,7 @@ out
 dist
 dist-ssr
 dev-dist
+next-env.d.ts
 
 # Expo
 expo-env.d.ts
