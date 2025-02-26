@@ -2,15 +2,7 @@
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "files": {
     "ignoreUnknown": true,
-    "ignore": [
-      "node_modules/**/*",
-      "dist/**/*",
-      "dev-dist/**/*",
-      "coverage/**/*",
-      "public/**/*",
-      "route-tree.gen.ts",
-      "vite-env.d.ts"
-    ]
+    "ignore": ["node_modules/**/*", "dist/**/*", ".next/**/*", "coverage/**/*", "public/**/*"]
   },
   "formatter": {
     "enabled": true,
@@ -61,6 +53,18 @@
       }
     }
   },
+  "overrides": [
+    {
+      "include": ["./apps/mobile/src/services/*.ts"],
+      "linter": {
+        "rules": {
+          "nursery": {
+            "useExplicitType": "off"
+          }
+        }
+      }
+    }
+  ],
   "javascript": {
     "formatter": {
       "trailingCommas": "none",

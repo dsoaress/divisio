@@ -1,6 +1,5 @@
 import type { Controller } from '@/core/base/controller'
 import { type HttpServer, httpStatusCode, permissions } from '@/core/base/http-server'
-import { env } from '@/infra/config/env'
 import type { CreateOrUpdateUserCommand } from '@/modules/users/commands/create-or-update-user.command'
 import type { CreateSessionCommand } from '@/modules/users/commands/create-session.command'
 import type { RefreshSessionCommand } from '@/modules/users/commands/refresh-session.command'
@@ -27,9 +26,9 @@ export class SessionsController implements Controller {
         const { id: sessionId } = await this.createSessionCommand.execute(id)
         res
           .status(httpStatusCode.REDIRECT)
-          .redirect(`${env.CLIENT_URL}/sign-in?token=${token}&refresh-token=${sessionId}`)
+          .redirect(`/sign-in?token=${token}&refresh-token=${sessionId}`)
       } catch {
-        res.status(httpStatusCode.REDIRECT).redirect(`${env.CLIENT_URL}/sign-in?error=google`)
+        res.status(httpStatusCode.REDIRECT).redirect('/sign-in?error=google')
       }
     })
 

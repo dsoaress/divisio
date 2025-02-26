@@ -18,14 +18,14 @@
     "test:ui": "pnpm setenv:test vitest --ui",
     "lint": "pnpm biome check --write --unsafe .",
     "lint:ci": "pnpm biome ci .",
+    "orval": "pnpm setenv pnpm --filter server openapi:generate && pnpm setenv pnpm --filter mobile orval && pnpm lint",
     "db:generate": "pnpm setenv pnpm --filter server db:generate",
     "db:migrate": "pnpm setenv pnpm --filter server db:migrate",
     "db:migrate:ci": "pnpm --filter server db:migrate",
     "db:seed": "pnpm setenv pnpm --filter server db:seed",
     "db:seed:ci": "pnpm --filter server db:seed",
     "setenv": "dotenv -e .env.local -e .env -o --",
-    "setenv:test": "dotenv -e .env.test --",
-    "prepare": "lefthook install || true"
+    "setenv:test": "dotenv -e .env.test --"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
@@ -37,6 +37,16 @@
     "serve": "14.2.4",
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "3.0.6"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@biomejs/biome",
+      "cpu-features",
+      "esbuild",
+      "lefthook",
+      "sharp",
+      "ssh2"
+    ]
   },
   "engines": {
     "node": "22.14.0",
