@@ -6,7 +6,6 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev:mobile": "pnpm setenv pnpm --filter mobile dev",
     "dev:www": "pnpm setenv pnpm --filter www dev",
     "dev:server": "pnpm setenv pnpm --filter server dev",
     "build:www": "pnpm --filter www build",
@@ -18,7 +17,7 @@
     "test:ui": "pnpm setenv:test vitest --ui",
     "lint": "pnpm biome check --write --unsafe .",
     "lint:ci": "pnpm biome ci .",
-    "orval": "pnpm setenv pnpm --filter server openapi:generate && pnpm setenv pnpm --filter mobile orval && pnpm lint",
+    "orval": "pnpm setenv pnpm --filter server openapi:generate && pnpm setenv pnpm --filter www orval && pnpm lint",
     "db:generate": "pnpm setenv pnpm --filter server db:generate",
     "db:migrate": "pnpm setenv pnpm --filter server db:migrate",
     "db:migrate:ci": "pnpm --filter server db:migrate",

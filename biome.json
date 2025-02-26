@@ -55,7 +55,7 @@
   },
   "overrides": [
     {
-      "include": ["./apps/mobile/src/services/*.ts"],
+      "include": ["./apps/www/src/services/*.ts"],
       "linter": {
         "rules": {
           "nursery": {
