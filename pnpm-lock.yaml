@@ -36,6 +36,40 @@ importers:
         specifier: 3.0.7
         version: 3.0.7(@types/debug@4.1.12)(@types/node@22.13.5)(@vitest/ui@3.0.7)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.0)
 
+  apps/client:
+    dependencies:
+      next:
+        specifier: 15.2.0
+        version: 15.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react:
+        specifier: 19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: 19.0.0
+        version: 19.0.0(react@19.0.0)
+    devDependencies:
+      '@tailwindcss/postcss':
+        specifier: 4.0.9
+        version: 4.0.9
+      '@types/node':
+        specifier: 22.13.5
+        version: 22.13.5
+      '@types/react':
+        specifier: 19.0.10
+        version: 19.0.10
+      '@types/react-dom':
+        specifier: 19.0.4
+        version: 19.0.4(@types/react@19.0.10)
+      postcss:
+        specifier: 8.5.3
+        version: 8.5.3
+      tailwindcss:
+        specifier: 4.0.9
+        version: 4.0.9
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
+
   apps/server:
     dependencies:
       '@fastify/jwt':
@@ -90,40 +124,6 @@ importers:
       tsx:
         specifier: 4.19.3
         version: 4.19.3
-      typescript:
-        specifier: 5.7.3
-        version: 5.7.3
-
-  apps/www:
-    dependencies:
-      next:
-        specifier: 15.2.0
-        version: 15.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      react:
-        specifier: 19.0.0
-        version: 19.0.0
-      react-dom:
-        specifier: 19.0.0
-        version: 19.0.0(react@19.0.0)
-    devDependencies:
-      '@tailwindcss/postcss':
-        specifier: 4.0.9
-        version: 4.0.9
-      '@types/node':
-        specifier: 22.13.5
-        version: 22.13.5
-      '@types/react':
-        specifier: 19.0.10
-        version: 19.0.10
-      '@types/react-dom':
-        specifier: 19.0.4
-        version: 19.0.4(@types/react@19.0.10)
-      postcss:
-        specifier: 8.5.3
-        version: 8.5.3
-      tailwindcss:
-        specifier: 4.0.9
-        version: 4.0.9
       typescript:
         specifier: 5.7.3
         version: 5.7.3

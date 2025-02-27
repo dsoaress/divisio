@@ -14,7 +14,7 @@ export default defineConfig({
     include: ['**/?(*.){spec,int-spec,e2e-spec}.?(c|m)[jt]s?(x)'],
     coverage: {
       enabled: true,
-      include: ['apps/server/src', 'apps/www/src'],
+      include: ['apps/server/src', 'apps/client/src'],
       exclude: ['**/*.d.ts', '**/?(*.){spec,int-spec,e2e-spec}.?(c|m)[jt]s?(x)'],
       reporter: ['text', 'html', 'lcov']
     }

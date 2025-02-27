@@ -42,10 +42,10 @@ services:
     networks:
       - divisio
 
-  www:
+  client:
     build:
       context: .
-      dockerfile: apps/www/Dockerfile
+      dockerfile: apps/client/Dockerfile
     restart: unless-stopped
     depends_on:
       - server
