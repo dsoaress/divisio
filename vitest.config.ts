@@ -15,11 +15,7 @@ export default defineConfig({
     coverage: {
       enabled: true,
       include: ['apps/server/src', 'apps/www/src'],
-      exclude: [
-        '**/route-tree.gen.ts',
-        '**/*.d.ts',
-        '**/?(*.){spec,int-spec,e2e-spec}.?(c|m)[jt]s?(x)'
-      ],
+      exclude: ['**/*.d.ts', '**/?(*.){spec,int-spec,e2e-spec}.?(c|m)[jt]s?(x)'],
       reporter: ['text', 'html', 'lcov']
     }
   }
