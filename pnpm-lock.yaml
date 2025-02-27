@@ -56,6 +56,9 @@ importers:
       pg:
         specifier: 8.13.3
         version: 8.13.3
+      pino-pretty:
+        specifier: 13.0.0
+        version: 13.0.0
       zod:
         specifier: 3.24.2
         version: 3.24.2
@@ -81,9 +84,6 @@ importers:
       drizzle-kit:
         specifier: 0.30.4
         version: 0.30.4
-      pino-pretty:
-        specifier: 13.0.0
-        version: 13.0.0
       supertest:
         specifier: 7.0.0
         version: 7.0.0

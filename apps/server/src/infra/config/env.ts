@@ -29,7 +29,6 @@ const envSchema = z
   }, 'Google OAuth 2.0 credentials is required in production and development environments')
 
 const parsedEnv = envSchema.safeParse(process.env)
-if (!parsedEnv.success)
-  throw new Error(JSON.stringify(parsedEnv.error.flatten().fieldErrors, null, 2))
+if (!parsedEnv.success) throw new Error(JSON.stringify(parsedEnv.error, null, 2))
 
 export const env = parsedEnv.data
