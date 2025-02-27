@@ -10,10 +10,13 @@ import {
 import type { GroupsDAO } from '@/modules/groups/daos/groups.dao'
 
 import type { CacheService } from '@/core/base/cache-service'
-import type { GetGroupByIdInputDTO } from '@/modules/groups/dtos/get-group-by-id-input.dto'
-import type { GetGroupByIdOutputDTO } from '@/modules/groups/dtos/get-group-by-id-output.dto'
-import type { GetGroupsInputDTO } from '@/modules/groups/dtos/get-groups-input.dto'
-import type { GetGroupsOutputDTO } from '@/modules/groups/dtos/get-groups-output.dto'
+
+import type {
+  GetGroupByIdInputDTO,
+  GetGroupByIdOutputDTO,
+  GetGroupsInputDTO,
+  GetGroupsOutputDTO
+} from 'shared'
 import type { DrizzleService } from '../../drizzle.service'
 
 export class DrizzleGroupsDAO implements GroupsDAO {

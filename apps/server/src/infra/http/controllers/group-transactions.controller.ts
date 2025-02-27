@@ -3,10 +3,9 @@ import { type HttpServer, httpStatusCode, permissions } from '@/core/base/http-s
 import type { CreateGroupTransactionCommand } from '@/modules/groups/commands/create-group-transaction.command'
 import type { DeleteGroupTransactionCommand } from '@/modules/groups/commands/delete-group-transaction.command'
 import type { UpdateGroupTransactionCommand } from '@/modules/groups/commands/update-group-transaction.command'
-import type { CreateGroupTransactionDTO } from '@/modules/groups/dtos/create-group-transaction.dto'
-import type { GetGroupTransactionsByGroupIdInputDTO } from '@/modules/groups/dtos/get-group-transactions-by-group-id-input.dto'
 import type { GetGroupTransactionByIdQuery } from '@/modules/groups/queries/get-group-transaction-by-id.query'
 import type { GetGroupTransactionsByGroupIdQuery } from '@/modules/groups/queries/get-group-transactions-by-group-id.query'
+import type { CreateGroupTransactionDTO, GetGroupTransactionsByGroupIdInputDTO } from 'shared'
 
 const { PRIVATE } = permissions
 

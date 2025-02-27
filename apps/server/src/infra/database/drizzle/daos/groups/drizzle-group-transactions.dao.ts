@@ -10,10 +10,12 @@ import {
   users
 } from '@/infra/database/drizzle/schemas'
 import type { GroupTransactionsDAO } from '@/modules/groups/daos/group-transactions.dao'
-import type { GetGroupTransactionByIdInputDTO } from '@/modules/groups/dtos/get-group-transaction-by-id-input.dto'
-import type { GetGroupTransactionByIdOutputDTO } from '@/modules/groups/dtos/get-group-transaction-by-id-output.dto'
-import type { GetGroupTransactionsByGroupIdInputDTO } from '@/modules/groups/dtos/get-group-transactions-by-group-id-input.dto'
-import type { GetGroupTransactionsByGroupIdOutputDTO } from '@/modules/groups/dtos/get-group-transactions-by-group-id-output.dto'
+import type {
+  GetGroupTransactionByIdInputDTO,
+  GetGroupTransactionByIdOutputDTO,
+  GetGroupTransactionsByGroupIdInputDTO,
+  GetGroupTransactionsByGroupIdOutputDTO
+} from 'shared'
 
 export class DrizzleGroupTransactionsDAO implements GroupTransactionsDAO {
   constructor(

@@ -2,10 +2,12 @@ import type { Query } from '@/core/base/query'
 import { BadRequestException } from '@/core/exceptions/bad-request.exception'
 import { NotFoundException } from '@/core/exceptions/not-found.exception'
 
+import {
+  type GetGroupTransactionsByGroupIdInputDTO,
+  type GetGroupTransactionsByGroupIdOutputDTO,
+  getGroupTransactionsByGroupIdInputValidator
+} from 'shared'
 import type { GroupTransactionsDAO } from '../daos/group-transactions.dao'
-import type { GetGroupTransactionsByGroupIdInputDTO } from '../dtos/get-group-transactions-by-group-id-input.dto'
-import type { GetGroupTransactionsByGroupIdOutputDTO } from '../dtos/get-group-transactions-by-group-id-output.dto'
-import { getGroupTransactionsByGroupIdInputValidator } from '../validators/get-group-transactions-by-group-id-input.validator'
 
 export class GetGroupTransactionsByGroupIdQuery
   implements

@@ -4,16 +4,19 @@ FROM base AS build
 
 WORKDIR /divisio
 
-RUN mkdir -p /divisio/apps/client
+RUN mkdir -p /divisio/apps/client && mkdir -p /divisio/apps/shared
 
 COPY package.json pnpm-*.yaml ./
 COPY apps/client/package.json ./apps/client/
+COPY apps/shared/package.json ./apps/shared/
 
 RUN corepack enable && pnpm install --frozen-lockfile
 
 COPY apps/client/next.config.ts apps/client/.postcssrc.json apps/client/tsconfig.json ./apps/client/
 COPY apps/client/src ./apps/client/src
 COPY apps/client/public ./apps/client/public
+COPY apps/shared/tsup.config.ts apps/shared/tsconfig.json ./apps/shared/
+COPY apps/shared/src ./apps/shared/src
 
 RUN pnpm build:client
 

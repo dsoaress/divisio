@@ -1,10 +1,10 @@
 import { eq } from 'drizzle-orm'
 
-import { IdValueObject } from '@/core/value-objects/id.value-object'
 import type { DrizzleService } from '@/infra/database/drizzle/drizzle.service'
 import { sessions } from '@/infra/database/drizzle/schemas'
 import type { SessionModel } from '@/modules/users/models/session.model'
 import type { SessionsRepository } from '@/modules/users/repositories/sessions.repository'
+import { IdValueObject } from 'shared'
 
 type SessionResult = {
   id: string

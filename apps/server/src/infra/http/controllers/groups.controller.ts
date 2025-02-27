@@ -5,10 +5,9 @@ import type { DeleteGroupCommand } from '@/modules/groups/commands/delete-group.
 import type { JoinGroupCommand } from '@/modules/groups/commands/join-group.command'
 import type { RemoveGroupMemberCommand } from '@/modules/groups/commands/remove-group-member.command'
 import type { UpdateGroupCommand } from '@/modules/groups/commands/update-group.command'
-import type { CreateGroupInputDTO } from '@/modules/groups/dtos/create-group-input.dto'
-import type { UpdateGroupDTO } from '@/modules/groups/dtos/update-group.dto'
 import type { GetGroupByIdQuery } from '@/modules/groups/queries/get-group-by-id.query'
 import type { GetGroupsQuery } from '@/modules/groups/queries/get-groups.query'
+import type { CreateGroupInputDTO, UpdateGroupDTO } from 'shared'
 
 const { PRIVATE } = permissions
 

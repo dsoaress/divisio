@@ -2,10 +2,12 @@ import type { Query } from '@/core/base/query'
 import { BadRequestException } from '@/core/exceptions/bad-request.exception'
 import { NotFoundException } from '@/core/exceptions/not-found.exception'
 
+import {
+  type GetGroupByIdInputDTO,
+  type GetGroupByIdOutputDTO,
+  getGroupByIdInputValidator
+} from 'shared'
 import type { GroupsDAO } from '../daos/groups.dao'
-import type { GetGroupByIdInputDTO } from '../dtos/get-group-by-id-input.dto'
-import type { GetGroupByIdOutputDTO } from '../dtos/get-group-by-id-output.dto'
-import { getGroupByIdInputValidator } from '../validators/get-group-by-id-input.validator'
 
 export class GetGroupByIdQuery
   implements Query<GetGroupByIdInputDTO, Promise<GetGroupByIdOutputDTO>>

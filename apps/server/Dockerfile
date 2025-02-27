@@ -4,15 +4,18 @@ FROM base AS build
 
 WORKDIR /divisio
 
-RUN mkdir -p /divisio/apps/server
+RUN mkdir -p /divisio/apps/server && mkdir -p /divisio/apps/shared
 
 COPY package.json pnpm-*.yaml ./
 COPY apps/server/package.json ./apps/server/
+COPY apps/shared/package.json ./apps/shared/
 
 RUN corepack enable && pnpm install --frozen-lockfile
 
 COPY apps/server/drizzle.config.ts apps/server/tsup.config.ts apps/server/tsconfig.json ./apps/server/
 COPY apps/server/src ./apps/server/src
+COPY apps/shared/tsup.config.ts apps/shared/tsconfig.json ./apps/shared/
+COPY apps/shared/src ./apps/shared/src
 
 RUN pnpm build:server
 

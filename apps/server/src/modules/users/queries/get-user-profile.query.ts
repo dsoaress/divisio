@@ -1,9 +1,8 @@
 import type { Query } from '@/core/base/query'
 import { NotFoundException } from '@/core/exceptions/not-found.exception'
 
+import type { GetUserProfileInputDTO, GetUserProfileOutputDTO } from 'shared'
 import type { UsersDAO } from '../daos/users.dao'
-import type { GetUserProfileInputDTO } from '../dtos/get-user-profile-input.dto'
-import type { GetUserProfileOutputDTO } from '../dtos/get-user-profile-output.dto'
 
 export class GetUserProfileQuery
   implements Query<GetUserProfileInputDTO, Promise<GetUserProfileOutputDTO>>

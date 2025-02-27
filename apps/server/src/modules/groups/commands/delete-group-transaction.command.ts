@@ -2,9 +2,8 @@ import type { Command } from '@/core/base/command'
 import { BadRequestException } from '@/core/exceptions/bad-request.exception'
 import { NotFoundException } from '@/core/exceptions/not-found.exception'
 
-import type { DeleteGroupTransactionDTO } from '../dtos/delete-group-transaction.dto'
+import { type DeleteGroupTransactionDTO, deleteGroupTransactionValidator } from 'shared'
 import type { GroupTransactionsRepository } from '../repositories/group-transactions.repository'
-import { deleteGroupTransactionValidator } from '../validators/delete-group-transaction.validator'
 
 export class DeleteGroupTransactionCommand
   implements Command<DeleteGroupTransactionDTO, Promise<void>>

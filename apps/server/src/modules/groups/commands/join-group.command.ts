@@ -3,9 +3,8 @@ import { BadRequestException } from '@/core/exceptions/bad-request.exception'
 import { ConflictException } from '@/core/exceptions/conflict.exception'
 import { NotFoundException } from '@/core/exceptions/not-found.exception'
 
-import type { JoinGroupDTO } from '../dtos/join-group.dto'
+import { type JoinGroupDTO, joinGroupValidator } from 'shared'
 import type { GroupsRepository } from '../repositories/groups.repository'
-import { joinGroupValidator } from '../validators/join-group.validator'
 
 export class JoinGroupCommand implements Command<JoinGroupDTO, Promise<void>> {
   constructor(private readonly groupsRepository: GroupsRepository) {}

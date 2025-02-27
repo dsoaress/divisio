@@ -1,11 +1,11 @@
 import { eq } from 'drizzle-orm'
 
 import type { CacheService } from '@/core/base/cache-service'
-import { IdValueObject } from '@/core/value-objects/id.value-object'
 import type { DrizzleService } from '@/infra/database/drizzle/drizzle.service'
 import { groupTransactionParticipants, groupTransactions } from '@/infra/database/drizzle/schemas'
 import type { GroupTransactionModel } from '@/modules/groups/models/group-transaction.model'
 import type { GroupTransactionsRepository } from '@/modules/groups/repositories/group-transactions.repository'
+import { IdValueObject } from 'shared'
 
 type GroupTransactionResult = {
   id: string

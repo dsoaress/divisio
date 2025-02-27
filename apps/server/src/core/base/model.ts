@@ -1,4 +1,4 @@
-import type { IdValueObject } from '../value-objects/id.value-object'
+import type { IdValueObject } from 'shared'
 
 export interface Model {
   id: IdValueObject

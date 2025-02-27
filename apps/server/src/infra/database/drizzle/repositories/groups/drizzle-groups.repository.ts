@@ -1,12 +1,11 @@
 import { and, eq } from 'drizzle-orm'
 
 import type { CacheService } from '@/core/base/cache-service'
-import { IdValueObject } from '@/core/value-objects/id.value-object'
 import type { DrizzleService } from '@/infra/database/drizzle/drizzle.service'
 import { groupMembers, groups } from '@/infra/database/drizzle/schemas'
-import type { CurrencyDTO } from '@/modules/groups/dtos/currency.dto'
 import type { GroupModel } from '@/modules/groups/models/group.model'
 import type { GroupsRepository } from '@/modules/groups/repositories/groups.repository'
+import { type CurrencyDTO, IdValueObject } from 'shared'
 
 type GroupResult = {
   id: string

@@ -1,7 +1,9 @@
-import type { GetGroupTransactionByIdInputDTO } from '../dtos/get-group-transaction-by-id-input.dto'
-import type { GetGroupTransactionByIdOutputDTO } from '../dtos/get-group-transaction-by-id-output.dto'
-import type { GetGroupTransactionsByGroupIdInputDTO } from '../dtos/get-group-transactions-by-group-id-input.dto'
-import type { GetGroupTransactionsByGroupIdOutputDTO } from '../dtos/get-group-transactions-by-group-id-output.dto'
+import type {
+  GetGroupTransactionByIdInputDTO,
+  GetGroupTransactionByIdOutputDTO,
+  GetGroupTransactionsByGroupIdInputDTO,
+  GetGroupTransactionsByGroupIdOutputDTO
+} from 'shared'
 
 export interface GroupTransactionsDAO {
   getGroupTransactionById({

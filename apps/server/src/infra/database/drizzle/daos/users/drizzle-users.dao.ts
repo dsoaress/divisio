@@ -4,7 +4,7 @@ import type { CacheService } from '@/core/base/cache-service'
 import type { DrizzleService } from '@/infra/database/drizzle/drizzle.service'
 import { users } from '@/infra/database/drizzle/schemas'
 import type { UsersDAO } from '@/modules/users/daos/users.dao'
-import type { GetUserProfileOutputDTO } from '@/modules/users/dtos/get-user-profile-output.dto'
+import type { GetUserProfileOutputDTO } from 'shared'
 
 export class DrizzleUsersDAO implements UsersDAO {
   constructor(

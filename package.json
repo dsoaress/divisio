@@ -8,8 +8,10 @@
   "scripts": {
     "dev:client": "pnpm setenv pnpm --filter client dev",
     "dev:server": "pnpm db:migrate && pnpm setenv pnpm --filter server dev",
-    "build:client": "pnpm --filter client build",
-    "build:server": "pnpm --filter server build",
+    "dev:shared": "pnpm --filter shared dev",
+    "build:client": "pnpm build:shared && pnpm --filter client build",
+    "build:server": "pnpm build:shared && pnpm --filter server build",
+    "build:shared": "pnpm --filter shared build",
     "start:client": "pnpm --filter client start",
     "start:server": "pnpm --filter server start",
     "test": "pnpm setenv:test vitest run",

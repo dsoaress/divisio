@@ -2,12 +2,14 @@ import type { Command } from '@/core/base/command'
 
 import { BadRequestException } from '@/core/exceptions/bad-request.exception'
 import { NotFoundException } from '@/core/exceptions/not-found.exception'
-import { IdValueObject } from '@/core/value-objects/id.value-object'
-import type { UpdateGroupTransactionDTO } from '../dtos/update-group-transaction.dto'
+import {
+  IdValueObject,
+  type UpdateGroupTransactionDTO,
+  updateGroupTransactionValidator
+} from 'shared'
 import type { GroupTransactionModel } from '../models/group-transaction.model'
 import type { GroupTransactionsRepository } from '../repositories/group-transactions.repository'
 import type { GroupsRepository } from '../repositories/groups.repository'
-import { updateGroupTransactionValidator } from '../validators/update-group-transaction.validator'
 
 export class UpdateGroupTransactionCommand
   implements Command<UpdateGroupTransactionDTO, Promise<void>>

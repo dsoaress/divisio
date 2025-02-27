@@ -2,9 +2,9 @@ import { drizzleService } from '@/infra/database/drizzle/drizzle.service'
 import { users } from '@/infra/database/drizzle/schemas'
 
 import type { CacheService } from '@/core/base/cache-service'
-import { IdValueObject } from '@/core/value-objects/id.value-object'
 import { RedisCacheServiceAdapter } from '@/infra/adapters/cache-service/redis/redis-cache-service.adapter'
 import { groupFake } from '@/modules/groups/utils/tests/fakes/group.fake'
+import { IdValueObject } from 'shared'
 import { DrizzleGroupsRepository } from './drizzle-groups.repository'
 
 describe('GroupsRepository', () => {

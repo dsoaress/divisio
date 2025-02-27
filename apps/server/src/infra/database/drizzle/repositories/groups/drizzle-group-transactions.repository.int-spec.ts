@@ -3,8 +3,8 @@ import { groupMembers, groups, users } from '@/infra/database/drizzle/schemas'
 import { groupTransactionFake } from '@/modules/groups/utils/tests/fakes/group-transaction.fake'
 
 import type { CacheService } from '@/core/base/cache-service'
-import { IdValueObject } from '@/core/value-objects/id.value-object'
 import { RedisCacheServiceAdapter } from '@/infra/adapters/cache-service/redis/redis-cache-service.adapter'
+import { IdValueObject } from 'shared'
 import { DrizzleGroupTransactionsRepository } from './drizzle-group-transactions.repository'
 
 describe('DrizzleGroupTransactionsRepository', () => {

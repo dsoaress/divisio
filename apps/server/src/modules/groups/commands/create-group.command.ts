@@ -1,12 +1,14 @@
 import type { Command } from '@/core/base/command'
 import { BadRequestException } from '@/core/exceptions/bad-request.exception'
 
-import { IdValueObject } from '@/core/value-objects/id.value-object'
-import type { CreateGroupInputDTO } from '../dtos/create-group-input.dto'
-import type { CreateGroupOutputDTO } from '../dtos/create-group-output.dto'
+import {
+  type CreateGroupInputDTO,
+  type CreateGroupOutputDTO,
+  IdValueObject,
+  createGroupValidator
+} from 'shared'
 import type { GroupModel } from '../models/group.model'
 import type { GroupsRepository } from '../repositories/groups.repository'
-import { createGroupValidator } from '../validators/create-group.validator'
 
 export class CreateGroupCommand
   implements Command<CreateGroupInputDTO, Promise<CreateGroupOutputDTO>>
