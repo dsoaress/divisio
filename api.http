@@ -9,6 +9,11 @@
 @fifthUserId = 75f9f70b-6cc8-4098-85c8-03b3756e2517
 @firstGroupTransactionId = 3774d0b4-a268-4864-b90f-a26a9dd4c321
 
+# @name healthCheck
+GET {{baseUrl}}/health-check
+
+###
+
 # @name getGroups
 GET {{baseUrl}}/groups
 Authorization: Bearer {{jwtToken}}
@@ -160,4 +165,10 @@ Authorization: Bearer {{jwtToken}}
 
 # @name deleteGroupTransaction
 DELETE {{baseUrl}}/groups/{{firstGroupId}}/transactions/{{firstGroupTransactionId}}
+Authorization: Bearer {{jwtToken}}
+
+###
+
+# @name getUserProfile
+GET {{baseUrl}}/users/profile
 Authorization: Bearer {{jwtToken}}
