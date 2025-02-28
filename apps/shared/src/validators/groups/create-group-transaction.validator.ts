@@ -1,5 +1,4 @@
 import { z } from 'zod'
-
 import { idValidator } from '../id.validator'
 import { amountValidator, amountValidatorErrorMessage } from './amount.validator'
 

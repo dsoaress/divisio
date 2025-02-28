@@ -1,4 +1,4 @@
-import { IdValueObject } from '@/value-objects/id.value-object'
+import { IdValueObject } from '../../value-objects/id.value-object'
 import { getGroupsInputValidator } from './get-groups-input.validator'
 
 describe('getGroupsInputValidator', () => {

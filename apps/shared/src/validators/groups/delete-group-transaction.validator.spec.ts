@@ -1,4 +1,4 @@
-import { IdValueObject } from '@/value-objects/id.value-object'
+import { IdValueObject } from '../../value-objects/id.value-object'
 import { deleteGroupTransactionValidator } from './delete-group-transaction.validator'
 
 describe('deleteGroupTransactionValidator', () => {

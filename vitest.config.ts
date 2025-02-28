@@ -16,7 +16,13 @@ export default defineConfig({
     coverage: {
       enabled: true,
       include: ['apps/server/src', 'apps/client/src', 'apps/shared/src'],
-      exclude: ['**/*.d.ts', '**/?(*.){spec,int-spec,e2e-spec}.?(c|m)[jt]s?(x)'],
+      exclude: [
+        '**/*.d.ts',
+        '**/?(*.){spec,int-spec,e2e-spec}.?(c|m)[jt]s?(x)',
+        'apps/client/src/app/layout.tsx',
+        'apps/server/src/main.ts',
+        'apps/shared/src/main.ts'
+      ],
       reporter: ['text', 'html', 'lcov']
     }
   }

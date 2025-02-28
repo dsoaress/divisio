@@ -1,4 +1,4 @@
-import { IdValueObject } from '@/value-objects/id.value-object'
+import { IdValueObject } from '../../value-objects/id.value-object'
 import { joinGroupValidator } from './join-group.validator'
 
 describe('joinGroupValidator', () => {

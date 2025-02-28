@@ -1,4 +1,4 @@
-import { createOrUpdateUserValidator } from '.'
+import { createOrUpdateUserValidator } from './create-or-update-user.validator'
 
 describe('createOrUpdateUserValidator', () => {
   it.each([

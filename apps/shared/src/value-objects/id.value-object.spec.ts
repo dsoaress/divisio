@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 
-import { IdValueObject } from '.'
+import { IdValueObject } from './id.value-object'
 
 describe('IdValueObject', () => {
   it('should create a new id', () => {

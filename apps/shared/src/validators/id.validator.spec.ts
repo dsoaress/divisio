@@ -1,5 +1,4 @@
 import { IdValueObject } from '../value-objects/id.value-object'
-
 import { idValidator } from './id.validator'
 
 describe('idValidator', () => {
