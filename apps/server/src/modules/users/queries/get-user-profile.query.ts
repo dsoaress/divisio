@@ -1,7 +1,6 @@
-import type { Query } from '@/core/base/query'
 import { NotFoundException } from '@/core/exceptions/not-found.exception'
 
-import type { GetUserProfileInputDTO, GetUserProfileOutputDTO } from 'shared'
+import type { GetUserProfileInputDTO, GetUserProfileOutputDTO, Query } from 'shared'
 import type { UsersDAO } from '../daos/users.dao'
 
 export class GetUserProfileQuery

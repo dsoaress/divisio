@@ -1,8 +1,7 @@
-import type { Command } from '@/core/base/command'
-
 import { BadRequestException } from '@/core/exceptions/bad-request.exception'
 import { NotFoundException } from '@/core/exceptions/not-found.exception'
 import {
+  type Command,
   IdValueObject,
   type UpdateGroupTransactionDTO,
   updateGroupTransactionValidator

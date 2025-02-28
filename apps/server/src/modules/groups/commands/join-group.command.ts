@@ -1,9 +1,8 @@
-import type { Command } from '@/core/base/command'
 import { BadRequestException } from '@/core/exceptions/bad-request.exception'
 import { ConflictException } from '@/core/exceptions/conflict.exception'
 import { NotFoundException } from '@/core/exceptions/not-found.exception'
 
-import { type JoinGroupDTO, joinGroupValidator } from 'shared'
+import { type Command, type JoinGroupDTO, joinGroupValidator } from 'shared'
 import type { GroupsRepository } from '../repositories/groups.repository'
 
 export class JoinGroupCommand implements Command<JoinGroupDTO, Promise<void>> {

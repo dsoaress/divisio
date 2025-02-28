@@ -1,3 +1,7 @@
+// Base
+export * from './base/command'
+export * from './base/query'
+
 // DTOs
 export * from './dtos/groups/create-group-input.dto'
 export * from './dtos/groups/create-group-output.dto'

@@ -1,8 +1,7 @@
-import type { Command } from '@/core/base/command'
 import { BadRequestException } from '@/core/exceptions/bad-request.exception'
 import { NotFoundException } from '@/core/exceptions/not-found.exception'
 
-import { IdValueObject, type UpdateGroupDTO, updateGroupValidator } from 'shared'
+import { type Command, IdValueObject, type UpdateGroupDTO, updateGroupValidator } from 'shared'
 import type { GroupsRepository } from '../repositories/groups.repository'
 
 export class UpdateGroupCommand implements Command<UpdateGroupDTO, Promise<void>> {

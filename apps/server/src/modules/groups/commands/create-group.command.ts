@@ -1,7 +1,7 @@
-import type { Command } from '@/core/base/command'
 import { BadRequestException } from '@/core/exceptions/bad-request.exception'
 
 import {
+  type Command,
   type CreateGroupInputDTO,
   type CreateGroupOutputDTO,
   IdValueObject,

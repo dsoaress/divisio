@@ -1,10 +1,10 @@
-import type { Query } from '@/core/base/query'
 import { BadRequestException } from '@/core/exceptions/bad-request.exception'
 import { NotFoundException } from '@/core/exceptions/not-found.exception'
 
 import {
   type GetGroupTransactionByIdInputDTO,
   type GetGroupTransactionByIdOutputDTO,
+  type Query,
   getGroupTransactionByIdInputValidator
 } from 'shared'
 import type { GroupTransactionsDAO } from '../daos/group-transactions.dao'

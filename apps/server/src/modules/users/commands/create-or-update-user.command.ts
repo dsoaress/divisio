@@ -1,6 +1,6 @@
-import type { Command } from '@/core/base/command'
 import { BadRequestException } from '@/core/exceptions/bad-request.exception'
 import {
+  type Command,
   type CreateOrUpdateUserInputDTO,
   type CreateOrUpdateUserOutputDTO,
   IdValueObject,

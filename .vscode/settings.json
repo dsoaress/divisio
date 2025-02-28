@@ -31,5 +31,5 @@
     "*.spec.ts": "ts-test",
     ".env.example": "gear"
   },
-  "cSpell.words": ["asteasolutions", "divisio"]
+  "cSpell.words": ["asteasolutions", "daos", "divisio", "oklch", "xior"]
 }

@@ -37,6 +37,7 @@ services:
     environment:
       - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
       - REDIS_URL=redis://redis:6379
+      - CLIENT_URL=http://client:3001
     ports:
       - 3000:3000
     networks:
@@ -52,6 +53,7 @@ services:
     environment:
       - HOSTNAME=0.0.0.0
       - PORT=3001
+      - SERVER_URL=http://server:3000
     ports:
       - 3001:3001
     networks:

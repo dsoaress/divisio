@@ -1,6 +1,5 @@
-import type { Command } from '@/core/base/command'
 import { ForbiddenException } from '@/core/exceptions/forbidden.exception'
-import { IdValueObject } from 'shared'
+import { type Command, IdValueObject } from 'shared'
 import type { SessionsRepository } from '../repositories/sessions.repository'
 
 export class RefreshSessionCommand
