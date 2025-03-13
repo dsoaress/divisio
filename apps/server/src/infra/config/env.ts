@@ -7,7 +7,7 @@ const envSchema = z
     JWT_SECRET: z.string(),
     DATABASE_URL: z.string().url(),
     REDIS_URL: z.string().url(),
-    CLIENT_URL: z.string().url(),
+    WEB_URL: z.string().url(),
     GOOGLE_CLIENT_ID: z.string().optional(),
     GOOGLE_CLIENT_SECRET: z.string().optional(),
     GOOGLE_OAUTH_REDIRECT_URL: z.string().url()

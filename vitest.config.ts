@@ -15,11 +15,11 @@ export default defineConfig({
     include: ['**/?(*.){spec,int-spec,e2e-spec}.?(c|m)[jt]s?(x)'],
     coverage: {
       enabled: true,
-      include: ['apps/server/src', 'apps/client/src', 'apps/shared/src'],
+      include: ['apps/server/src', 'apps/web/src', 'apps/shared/src'],
       exclude: [
         '**/*.d.ts',
         '**/?(*.){spec,int-spec,e2e-spec}.?(c|m)[jt]s?(x)',
-        'apps/client/src/app/layout.tsx',
+        'apps/web/src/app/layout.tsx',
         'apps/server/src/main.ts',
         'apps/shared/src/main.ts'
       ],

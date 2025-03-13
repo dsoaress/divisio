@@ -31,8 +31,8 @@ jobs:
       - name: Build server
         run: pnpm build:server
 
-      - name: Build client
-        run: pnpm build:client
+      - name: Build web
+        run: pnpm build:web
 
       - name: Run tests
         run: pnpm test

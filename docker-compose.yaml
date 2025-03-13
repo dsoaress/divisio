@@ -37,21 +37,20 @@ services:
     environment:
       - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
       - REDIS_URL=redis://redis:6379
-      - CLIENT_URL=http://client:3001
+      - WEB_URL=http://web:3001
     ports:
       - 3000:3000
     networks:
       - divisio
 
-  client:
+  web:
     build:
       context: .
-      dockerfile: apps/client/Dockerfile
+      dockerfile: apps/web/Dockerfile
     restart: unless-stopped
     depends_on:
       - server
     environment:
-      - HOSTNAME=0.0.0.0
       - PORT=3001
       - SERVER_URL=http://server:3000
     ports:
