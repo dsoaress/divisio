@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev -p 3001 --turbopack",
+    "dev": "next dev -p ${WEB_PORT} --turbopack",
     "build": "next build",
-    "start": "next start -p 3001"
+    "start": "next start -p ${WEB_PORT}"
   },
   "dependencies": {
     "@radix-ui/react-slot": "1.1.2",

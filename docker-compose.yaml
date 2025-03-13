@@ -51,7 +51,7 @@ services:
     depends_on:
       - server
     environment:
-      - PORT=3001
+      - WEB_PORT=3001
       - SERVER_URL=http://server:3000
     ports:
       - 3001:3001

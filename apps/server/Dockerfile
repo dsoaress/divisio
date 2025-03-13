@@ -29,6 +29,8 @@ RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nodejs
 COPY --from=build /divisio/package.json /divisio/pnpm-*.yaml ./
 COPY --from=build /divisio/apps/server/package.json ./apps/server/
 COPY --from=build /divisio/apps/server/dist ./apps/server/dist
+COPY --from=build /divisio/apps/shared/package.json ./apps/shared/
+COPY --from=build /divisio/apps/shared/dist ./apps/shared/dist
 
 RUN corepack enable && pnpm install --frozen-lockfile --prod
 
