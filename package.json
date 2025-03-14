@@ -30,8 +30,8 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@testcontainers/postgresql": "10.18.0",
-    "@testcontainers/redis": "10.18.0",
+    "@testcontainers/postgresql": "10.20.0",
+    "@testcontainers/redis": "10.20.0",
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.2.0",
     "@types/supertest": "6.0.2",
@@ -60,5 +60,5 @@
     "node": "22.14.0",
     "pnpm": ">=10.5.2"
   },
-  "packageManager": "pnpm@10.6.2"
+  "packageManager": "pnpm@10.6.3"
 }
