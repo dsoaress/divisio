@@ -6,12 +6,11 @@ import type {
 } from 'shared'
 
 export interface GroupTransactionsDAO {
-  getGroupTransactionById({
-    id,
-    memberId
-  }: GetGroupTransactionByIdInputDTO): Promise<GetGroupTransactionByIdOutputDTO | null>
-  getGroupTransactionsByGroupId({
-    groupId,
-    memberId
-  }: GetGroupTransactionsByGroupIdInputDTO): Promise<GetGroupTransactionsByGroupIdOutputDTO>
+  getGroupTransactionById(
+    data: GetGroupTransactionByIdInputDTO
+  ): Promise<GetGroupTransactionByIdOutputDTO | null>
+  getGroupTransactionsByGroupId(data: GetGroupTransactionsByGroupIdInputDTO): Promise<{
+    total: number
+    result: GetGroupTransactionsByGroupIdOutputDTO
+  }>
 }

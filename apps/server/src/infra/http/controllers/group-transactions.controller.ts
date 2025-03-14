@@ -25,9 +25,13 @@ export class GroupTransactionsController implements Controller {
       '/groups/:groupId/transactions/:groupTransactionId',
       async (req, res) => {
         const memberId = req.userId
-        const { groupTransactionId: id } = req.params
-        const data = await this.GetGroupTransactionByIdQuery.execute({ id, memberId })
-        res.status(httpStatusCode.OK).send({ data })
+        const { groupId, groupTransactionId } = req.params
+        const data = await this.GetGroupTransactionByIdQuery.execute({
+          groupId,
+          groupTransactionId,
+          memberId
+        })
+        res.status(httpStatusCode.OK).send(data)
       }
     )
 
@@ -41,7 +45,7 @@ export class GroupTransactionsController implements Controller {
         memberId,
         ...req.query
       })
-      res.status(httpStatusCode.OK).send({ data })
+      res.status(httpStatusCode.OK).send(data)
     })
 
     this.server.post<{

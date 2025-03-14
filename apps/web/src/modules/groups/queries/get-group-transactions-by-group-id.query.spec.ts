@@ -41,7 +41,8 @@ describe('getGroupTransactionsByGroupIdQuery', () => {
             perPage: params['per-page'],
             search: params.search
           })
-        ]
+        ],
+        revalidate: 60
       }
     })
     expect(result).toEqual([])

@@ -7,7 +7,7 @@ import * as schema from './schemas'
 export const drizzleService = drizzle({
   connection: env.DATABASE_URL,
   schema,
-  logger: env.NODE_ENV === 'local'
+  logger: env.APP_ENV === 'local'
 })
 
 export type DrizzleService = typeof drizzleService

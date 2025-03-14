@@ -1,17 +1,15 @@
 import type {
   GetGroupTransactionsByGroupIdInputDTO,
   GetGroupTransactionsByGroupIdOutputDTO,
-  Query,
-  QueryResult
+  PaginatedQueryResult,
+  Query
 } from 'shared'
 
 import { api } from '@/lib/api'
 
-import type { GetGroupTransactionsByGroupIdDTO } from '../dtos/get-group-transactions-by-group-id.dto'
-
 export function getGroupTransactionsByGroupIdQuery(): Query<
   Omit<GetGroupTransactionsByGroupIdInputDTO, 'memberId'>,
-  Promise<GetGroupTransactionsByGroupIdDTO>
+  Promise<PaginatedQueryResult<GetGroupTransactionsByGroupIdOutputDTO>>
 > {
   return {
     async execute({
@@ -21,12 +19,11 @@ export function getGroupTransactionsByGroupIdQuery(): Query<
       order,
       'per-page': perPage,
       search
-    }: Omit<
-      GetGroupTransactionsByGroupIdInputDTO,
-      'memberId'
-    >): Promise<GetGroupTransactionsByGroupIdDTO> {
+    }: Omit<GetGroupTransactionsByGroupIdInputDTO, 'memberId'>): Promise<
+      PaginatedQueryResult<GetGroupTransactionsByGroupIdOutputDTO>
+    > {
       return api
-        .get<QueryResult<GetGroupTransactionsByGroupIdOutputDTO>>(
+        .get<PaginatedQueryResult<GetGroupTransactionsByGroupIdOutputDTO>>(
           `groups/${groupId}/transactions`,
           {
             params: { page, dir, order, 'per-page': perPage, search },
@@ -36,7 +33,8 @@ export function getGroupTransactionsByGroupIdQuery(): Query<
                 groupId,
                 'transactions',
                 String({ page, dir, order, perPage, search })
-              ]
+              ],
+              revalidate: 60
             }
           }
         )

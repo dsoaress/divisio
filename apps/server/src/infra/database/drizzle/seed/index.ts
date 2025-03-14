@@ -1,5 +1,7 @@
 import { env } from '@/infra/config/env'
 import { drizzle } from 'drizzle-orm/node-postgres'
+import Redis from 'ioredis'
+
 import * as schema from '../schemas'
 import { data } from './data'
 
@@ -19,6 +21,14 @@ const {
   groupsCount: GROUPS_COUNT,
   transactionsPerUserPerGroup: TRANSACTIONS_PER_USER_PER_GROUP
 })
+
+const redis = new Redis(env.REDIS_URL)
+
+redis
+  .flushdb()
+  .then(() => console.info('Redis flushed'))
+  .catch(console.error)
+  .finally(() => redis.quit())
 
 drizzle({ connection: env.DATABASE_URL, schema })
   .transaction(async tx => {

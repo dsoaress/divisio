@@ -3,7 +3,14 @@ import { getGroupTransactionByIdInputValidator } from './get-group-transaction-b
 
 describe('getGroupTransactionByIdInputValidator', () => {
   it.each([
-    [{ id: IdValueObject.create().value, memberId: IdValueObject.create().value }, true],
+    [
+      {
+        groupTransactionId: IdValueObject.create().value,
+        groupId: IdValueObject.create().value,
+        memberId: IdValueObject.create().value
+      },
+      true
+    ],
     [{ memberId: 'id' }, false],
     [{}, false]
   ])('should validate the schema: %o (valid: %j)', (data, expected) => {

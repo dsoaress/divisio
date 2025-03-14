@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 const envSchema = z
   .object({
-    NODE_ENV: z.enum(['ci', 'test', 'local', 'staging', 'production']),
+    APP_ENV: z.enum(['ci', 'test', 'local', 'staging', 'production']),
     SERVER_PORT: z.coerce.number(),
     JWT_SECRET: z.string(),
     DATABASE_URL: z.string().url(),
@@ -13,9 +13,9 @@ const envSchema = z
     GOOGLE_OAUTH_REDIRECT_URL: z.string().url()
   })
   .refine(data => {
-    const isCIEnv = data.NODE_ENV === 'ci' || data.NODE_ENV === 'test'
-    const isLocalEnv = data.NODE_ENV === 'local'
-    const isProductionOrStagingEnv = data.NODE_ENV === 'staging' || data.NODE_ENV === 'production'
+    const isCIEnv = data.APP_ENV === 'ci' || data.APP_ENV === 'test'
+    const isLocalEnv = data.APP_ENV === 'local'
+    const isProductionOrStagingEnv = data.APP_ENV === 'staging' || data.APP_ENV === 'production'
     const hasGoogleOAuth = Boolean(data.GOOGLE_CLIENT_ID && data.GOOGLE_CLIENT_SECRET)
     if (isCIEnv) return true
     if (isProductionOrStagingEnv && !hasGoogleOAuth) return false
