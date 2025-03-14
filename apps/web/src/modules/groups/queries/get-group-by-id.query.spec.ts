@@ -15,7 +15,9 @@ describe('getGroupByIdQuery', () => {
     const query = getGroupByIdQuery()
     const result = await query.execute({ id })
 
-    expect(api.get).toHaveBeenCalledWith(`groups/${id}`, { next: { tags: ['groups', id] } })
+    expect(api.get).toHaveBeenCalledWith(`groups/${id}`, {
+      next: { tags: ['groups', id], revalidate: 60 }
+    })
     expect(result).toEqual({})
   })
 })

@@ -28,13 +28,13 @@ export class GroupsController implements Controller {
       const memberId = req.userId
       const { groupId: id } = req.params
       const data = await this.getGroupByIdQuery.execute({ memberId, id })
-      res.status(httpStatusCode.OK).send({ data })
+      res.status(httpStatusCode.OK).send(data)
     })
 
     this.server.get(PRIVATE, '/groups', async (req, res) => {
       const memberId = req.userId
       const data = await this.getGroupsQuery.execute({ memberId })
-      res.status(httpStatusCode.OK).send({ data })
+      res.status(httpStatusCode.OK).send(data)
     })
 
     this.server.post<{

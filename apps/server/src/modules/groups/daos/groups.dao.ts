@@ -6,6 +6,6 @@ import type {
 } from 'shared'
 
 export interface GroupsDAO {
-  getGroupById({ id, memberId }: GetGroupByIdInputDTO): Promise<GetGroupByIdOutputDTO | null>
-  getGroups({ memberId }: GetGroupsInputDTO): Promise<GetGroupsOutputDTO>
+  getGroupById(data: GetGroupByIdInputDTO): Promise<GetGroupByIdOutputDTO | null>
+  getGroups(data: GetGroupsInputDTO): Promise<GetGroupsOutputDTO>
 }

@@ -14,7 +14,7 @@ export class UsersControllers implements Controller {
     this.server.get(PRIVATE, '/users/profile', async (req, res) => {
       const id = req.userId
       const data = await this.getUserProfileQuery.execute({ id })
-      res.status(httpStatusCode.OK).send({ data })
+      res.status(httpStatusCode.OK).send(data)
     })
   }
 }

@@ -1,13 +1,14 @@
 import type { GetGroupsOutputDTO, Query, QueryResult } from 'shared'
 
 import { api } from '@/lib/api'
-import type { GetGroupsDTO } from '../dtos/get-groups.dto'
 
-export function getGroupsQuery(): Query<void, Promise<GetGroupsDTO>> {
+export function getGroupsQuery(): Query<void, Promise<QueryResult<GetGroupsOutputDTO>>> {
   return {
-    async execute(): Promise<GetGroupsDTO> {
+    async execute(): Promise<QueryResult<GetGroupsOutputDTO>> {
       return api
-        .get<QueryResult<GetGroupsOutputDTO>>('groups', { next: { tags: ['groups'] } })
+        .get<QueryResult<GetGroupsOutputDTO>>('groups', {
+          next: { tags: ['groups'], revalidate: 60 }
+        })
         .then(({ data }) => data)
     }
   }

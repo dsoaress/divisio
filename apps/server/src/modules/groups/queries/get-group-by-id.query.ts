@@ -5,20 +5,21 @@ import {
   type GetGroupByIdInputDTO,
   type GetGroupByIdOutputDTO,
   type Query,
+  type QueryResult,
   getGroupByIdInputValidator
 } from 'shared'
 import type { GroupsDAO } from '../daos/groups.dao'
 
 export class GetGroupByIdQuery
-  implements Query<GetGroupByIdInputDTO, Promise<GetGroupByIdOutputDTO>>
+  implements Query<GetGroupByIdInputDTO, Promise<QueryResult<GetGroupByIdOutputDTO>>>
 {
   constructor(private readonly groupsDAO: GroupsDAO) {}
 
-  async execute(data: GetGroupByIdInputDTO): Promise<GetGroupByIdOutputDTO> {
+  async execute(data: GetGroupByIdInputDTO): Promise<QueryResult<GetGroupByIdOutputDTO>> {
     const parsedData = getGroupByIdInputValidator.safeParse(data)
     if (!parsedData.success) throw new BadRequestException(parsedData.error)
     const group = await this.groupsDAO.getGroupById(parsedData.data)
     if (!group) throw new NotFoundException('Group')
-    return group
+    return { data: group }
   }
 }

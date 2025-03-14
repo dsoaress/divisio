@@ -21,7 +21,7 @@ describe('useSearch', () => {
   })
 
   it('should return the current search parameter', () => {
-    ;(useSearchParams as Mock).mockReturnValue(new URLSearchParams('search=test'))
+    ;(useSearchParams as Mock).mockReturnValue(new URLSearchParams('s=test'))
 
     const { result } = renderHook(() => useSearch())
 
@@ -29,7 +29,7 @@ describe('useSearch', () => {
   })
 
   it('should set a new search parameter', () => {
-    ;(useSearchParams as Mock).mockReturnValue(new URLSearchParams('search=test'))
+    ;(useSearchParams as Mock).mockReturnValue(new URLSearchParams('s=test'))
 
     const { result } = renderHook(() => useSearch())
 
@@ -37,14 +37,30 @@ describe('useSearch', () => {
       result.current.setSearch('new-search')
     })
 
-    expect(mockReplace).toHaveBeenCalledWith(`${mockPathname}?search=new-search`, { scroll: false })
+    expect(mockReplace).toHaveBeenCalledWith(`${mockPathname}?s=new-search`, { scroll: false })
   })
 
-  it('should handle empty search parameter', () => {
-    ;(useSearchParams as Mock).mockReturnValue(new URLSearchParams(''))
+  it('should set page to 1 when setting a new search parameter', () => {
+    ;(useSearchParams as Mock).mockReturnValue(new URLSearchParams('s=test&p=2'))
 
     const { result } = renderHook(() => useSearch())
 
-    expect(result.current.search).toBe('')
+    act(() => {
+      result.current.setSearch('new-search')
+    })
+
+    expect(mockReplace).toHaveBeenCalledWith(`${mockPathname}?s=new-search`, { scroll: false })
+  })
+
+  it('should handle empty search parameter', () => {
+    ;(useSearchParams as Mock).mockReturnValue(new URLSearchParams('s=test'))
+
+    const { result } = renderHook(() => useSearch())
+
+    act(() => {
+      result.current.setSearch('')
+    })
+
+    expect(mockReplace).toHaveBeenCalledWith(`${mockPathname}?`, { scroll: false })
   })
 })

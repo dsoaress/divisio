@@ -15,4 +15,4 @@ export const logger =
     production: true,
     test: false,
     ci: false
-  }[env.NODE_ENV] ?? true
+  }[env.APP_ENV] ?? true

@@ -24,11 +24,12 @@ export class DrizzleGroupTransactionsDAO implements GroupTransactionsDAO {
   ) {}
 
   async getGroupTransactionById({
-    id,
+    groupId,
+    groupTransactionId,
     memberId
   }: GetGroupTransactionByIdInputDTO): Promise<GetGroupTransactionByIdOutputDTO | null> {
     const cache = await this.cacheService.get<GetGroupTransactionByIdOutputDTO>(
-      `group-transaction:${id}:${memberId}`
+      `group-transaction:${groupId}:${groupTransactionId}:${memberId}`
     )
     if (cache) return cache
 
@@ -58,7 +59,7 @@ export class DrizzleGroupTransactionsDAO implements GroupTransactionsDAO {
       JOIN ${users} AS payer ON ${groupTransactions.payerMemberId} = payer.id
       JOIN ${groupTransactionParticipants} ON ${groupTransactions.id} = ${groupTransactionParticipants.groupTransactionId}
       JOIN ${users} ON ${groupTransactionParticipants.memberId} = ${users.id}
-      WHERE ${groupTransactions.id} = ${id} 
+      WHERE ${groupTransactions.id} = ${groupTransactionId} 
         AND EXTRACT(YEAR FROM ${groupTransactions.date}) = EXTRACT(YEAR FROM NOW()) 
         AND EXTRACT(MONTH FROM ${groupTransactions.date}) = EXTRACT(MONTH FROM NOW())
       GROUP BY ${groupTransactions.id}, ${groups.currency}, payer.id, payer.first_name, payer.last_name;
@@ -66,7 +67,10 @@ export class DrizzleGroupTransactionsDAO implements GroupTransactionsDAO {
     const { rows } = await this.drizzleService.execute(query)
     if (rows.length === 0) return null
 
-    await this.cacheService.set(`group-transaction:${id}:${memberId}`, rows[0])
+    await this.cacheService.set(
+      `group-transaction:${groupId}:${groupTransactionId}:${memberId}`,
+      rows[0]
+    )
 
     return rows[0] as GetGroupTransactionByIdOutputDTO
   }
@@ -79,8 +83,14 @@ export class DrizzleGroupTransactionsDAO implements GroupTransactionsDAO {
     order,
     dir,
     search
-  }: GetGroupTransactionsByGroupIdInputDTO): Promise<GetGroupTransactionsByGroupIdOutputDTO> {
-    const cache = await this.cacheService.get<GetGroupTransactionsByGroupIdOutputDTO>(
+  }: GetGroupTransactionsByGroupIdInputDTO): Promise<{
+    total: number
+    result: GetGroupTransactionsByGroupIdOutputDTO
+  }> {
+    const cache = await this.cacheService.get<{
+      total: number
+      result: GetGroupTransactionsByGroupIdOutputDTO
+    }>(
       `group-transactions:${groupId}:${memberId}:${page}:${limit}:${order}:${dir}:${search ?? 'without-search'}`
     )
     if (cache) return cache
@@ -120,26 +130,24 @@ export class DrizzleGroupTransactionsDAO implements GroupTransactionsDAO {
       WHERE ${groups.id} = ${groupId} 
         AND EXTRACT(YEAR FROM ${groupTransactions.date}) = EXTRACT(YEAR FROM NOW()) 
         AND EXTRACT(MONTH FROM ${groupTransactions.date}) = EXTRACT(MONTH FROM NOW())
-        ${search?.trim() ? sql`AND LOWER(${groupTransactions.name}) LIKE LOWER(%${search}%)` : sql``}
+        ${search?.trim() ? sql`AND LOWER(${groupTransactions.name}) LIKE LOWER(${`%${search}%`})` : sql``}
       GROUP BY ${groupTransactions.id}, ${groups.currency}, payer.id, payer.first_name, payer.last_name
       ORDER BY ${groupTransactions[order]} ${dir === 'asc' ? sql`ASC` : sql`DESC`}
       LIMIT ${limit} 
       OFFSET ${(page - 1) * limit};
     `
 
-    const { rows, count } = await this.drizzleService.transaction(async tx => {
+    const result = await this.drizzleService.transaction(async tx => {
       const { rows } = await tx.execute(query)
-      const count = await tx.$count(groupTransactions, eq(groupTransactions.groupId, groupId))
-      return { rows: rows as GetGroupTransactionsByGroupIdOutputDTO, count }
+      const total = await tx.$count(groupTransactions, eq(groupTransactions.groupId, groupId))
+      return { result: rows as GetGroupTransactionsByGroupIdOutputDTO, total }
     })
-
-    console.log('count', count)
 
     await this.cacheService.set(
       `group-transactions:${groupId}:${memberId}:${page}:${limit}:${order}:${dir}:${search ?? 'without-search'}`,
-      rows
+      result
     )
 
-    return rows
+    return result
   }
 }
