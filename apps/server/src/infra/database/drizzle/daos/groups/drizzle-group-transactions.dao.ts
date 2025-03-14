@@ -1,4 +1,4 @@
-import { eq, sql } from 'drizzle-orm'
+import { sql } from 'drizzle-orm'
 
 import type { CacheService } from '@/core/base/cache-service'
 import type { DrizzleService } from '@/infra/database/drizzle/drizzle.service'
@@ -137,10 +137,24 @@ export class DrizzleGroupTransactionsDAO implements GroupTransactionsDAO {
       OFFSET ${(page - 1) * limit};
     `
 
+    const totalQuery = sql`
+        SELECT COUNT(*)
+        FROM ${groupTransactions}
+        JOIN ${groups} ON ${groupTransactions.groupId} = ${groups.id}
+        JOIN ${groupMembers} ON ${groups.id} = ${groupMembers.groupId} AND ${groupMembers.memberId} = ${memberId}
+        WHERE ${groups.id} = ${groupId} 
+          AND EXTRACT(YEAR FROM ${groupTransactions.date}) = EXTRACT(YEAR FROM NOW()) 
+          AND EXTRACT(MONTH FROM ${groupTransactions.date}) = EXTRACT(MONTH FROM NOW())
+          ${search?.trim() ? sql`AND LOWER(${groupTransactions.name}) LIKE LOWER(${`%${search}%`})` : sql``}
+      `
+
     const result = await this.drizzleService.transaction(async tx => {
       const { rows } = await tx.execute(query)
-      const total = await tx.$count(groupTransactions, eq(groupTransactions.groupId, groupId))
-      return { result: rows as GetGroupTransactionsByGroupIdOutputDTO, total }
+      const total = await tx.execute(totalQuery)
+      return {
+        result: rows as GetGroupTransactionsByGroupIdOutputDTO,
+        total: total.rows[0].count as number
+      }
     })
 
     await this.cacheService.set(

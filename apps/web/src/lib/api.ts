@@ -2,7 +2,7 @@ import { cookies } from 'next/headers'
 import xior from 'xior'
 
 const api = xior.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: process.env.SERVER_URL,
   cache: 'force-cache',
   next: { revalidate: 60 }
 })
