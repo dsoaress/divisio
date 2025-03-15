@@ -14,9 +14,10 @@ vi.mock('next/navigation', () => ({
 describe('usePagination', () => {
   const mockReplace = vi.fn()
   const mockPathname = '/test-path'
-  const mockSearchParams = new URLSearchParams()
+  let mockSearchParams: URLSearchParams
 
   beforeEach(() => {
+    mockSearchParams = new URLSearchParams()
     ;(useRouter as Mock).mockReturnValue({ replace: mockReplace })
     ;(usePathname as Mock).mockReturnValue(mockPathname)
     ;(useSearchParams as Mock).mockReturnValue(mockSearchParams)
@@ -31,12 +32,12 @@ describe('usePagination', () => {
 
   it('should return page and perPage values from search params', () => {
     mockSearchParams.set(CONSTANTS.PAGE, '2')
-    mockSearchParams.set(CONSTANTS.PER_PAGE, '20')
+    mockSearchParams.set(CONSTANTS.PER_PAGE, CONSTANTS.PER_PAGE_OPTIONS[1])
 
     const { result } = renderHook(() => usePagination())
 
     expect(result.current.page).toBe('2')
-    expect(result.current.perPage).toBe('20')
+    expect(result.current.perPage).toBe(CONSTANTS.PER_PAGE_OPTIONS[1])
   })
 
   it('should update page in search params', () => {
@@ -46,12 +47,9 @@ describe('usePagination', () => {
       result.current.setPage('3')
     })
 
-    expect(mockReplace).toHaveBeenCalledWith(
-      `${mockPathname}?${CONSTANTS.PAGE}=3&${CONSTANTS.PER_PAGE}=20`,
-      {
-        scroll: false
-      }
-    )
+    expect(mockReplace).toHaveBeenCalledWith(`${mockPathname}?${CONSTANTS.PAGE}=3`, {
+      scroll: false
+    })
   })
 
   it('should update perPage in search params', () => {
@@ -62,11 +60,8 @@ describe('usePagination', () => {
       result.current.setPerPage('15')
     })
 
-    expect(mockReplace).toHaveBeenCalledWith(
-      `${mockPathname}?${CONSTANTS.PAGE}=1&${CONSTANTS.PER_PAGE}=15`,
-      {
-        scroll: false
-      }
-    )
+    expect(mockReplace).toHaveBeenCalledWith(`${mockPathname}?${CONSTANTS.PER_PAGE}=15`, {
+      scroll: false
+    })
   })
 })
