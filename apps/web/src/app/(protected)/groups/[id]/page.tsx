@@ -1,8 +1,10 @@
+import { notFound } from 'next/navigation'
+
 import { ItemsPerPage } from '@/components/items-per-page'
 import { Pagination } from '@/components/pagination'
 import { getGroupByIdQuery } from '@/modules/groups/queries/get-group-by-id.query'
 import { getGroupTransactionsByGroupIdQuery } from '@/modules/groups/queries/get-group-transactions-by-group-id.query'
-import { notFound } from 'next/navigation'
+
 import { SearchInput } from './components/search-input'
 import { Transaction } from './components/transaction'
 import { groupsByIdSearchParamsValidator } from './validators/groups-by-id-search-params.validator'
@@ -52,7 +54,6 @@ export default async function GroupPage({
           <SearchInput />
         </div>
       </div>
-
       <pre>{JSON.stringify(group, null, 2)}</pre>
       {transactions.map(transaction => (
         <div key={transaction.id}>

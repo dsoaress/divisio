@@ -1,5 +1,7 @@
 import type { Controller } from '@/core/base/controller'
 import { type HttpServer, httpStatusCode, permissions } from '@/core/base/http-server'
+import { CONSTANTS } from '@/infra/config/constants'
+import { env } from '@/infra/config/env'
 import type { CreateOrUpdateUserCommand } from '@/modules/users/commands/create-or-update-user.command'
 import type { CreateSessionCommand } from '@/modules/users/commands/create-session.command'
 import type { RefreshSessionCommand } from '@/modules/users/commands/refresh-session.command'
@@ -21,14 +23,29 @@ export class SessionsController implements Controller {
       try {
         const { code } = req.query
         const userInfo = await this.googleOAuthService.execute(code)
-        const { id } = await this.createOrUpdateUserCommand.execute(userInfo)
-        const token = this.server.signJwt({ sub: id })
-        const { id: sessionId } = await this.createSessionCommand.execute(id)
+        const { id: userId } = await this.createOrUpdateUserCommand.execute(userInfo)
+        const accessToken = this.server.signJwt({ sub: userId })
+        const { id: refreshToken } = await this.createSessionCommand.execute({
+          userId,
+          maxAge: CONSTANTS.COOKIES.REFRESH_TOKEN_MAX_AGE
+        })
         res
           .status(httpStatusCode.REDIRECT)
-          .redirect(`/sign-in?token=${token}&refresh-token=${sessionId}`)
+          .cookie(CONSTANTS.COOKIES.ACCESS_TOKEN, accessToken, {
+            httpOnly: true,
+            secure: true,
+            path: '/',
+            maxAge: CONSTANTS.COOKIES.ACCESS_TOKEN_MAX_AGE
+          })
+          .cookie(CONSTANTS.COOKIES.REFRESH_TOKEN, refreshToken, {
+            httpOnly: true,
+            secure: true,
+            path: '/',
+            maxAge: CONSTANTS.COOKIES.REFRESH_TOKEN_MAX_AGE
+          })
+          .redirect(`${env.WEB_URL}/groups`)
       } catch {
-        res.status(httpStatusCode.REDIRECT).redirect('/sign-in?error=google')
+        res.status(httpStatusCode.REDIRECT).redirect(`${env.WEB_URL}/login`)
       }
     })
 
@@ -38,8 +55,8 @@ export class SessionsController implements Controller {
       async (req, res) => {
         const { refreshToken } = req.body
         const { sessionId, userId } = await this.refreshSessionCommand.execute(refreshToken)
-        const token = this.server.signJwt({ sub: userId })
-        res.status(httpStatusCode.OK).send({ data: { token, refreshToken: sessionId } })
+        const accessToken = this.server.signJwt({ sub: userId })
+        res.status(httpStatusCode.OK).send({ data: { accessToken, refreshToken: sessionId } })
       }
     )
   }

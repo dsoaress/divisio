@@ -33,8 +33,7 @@ export function getGroupTransactionsByGroupIdQuery(): Query<
                 groupId,
                 'transactions',
                 String({ page, dir, order, perPage, search })
-              ],
-              revalidate: 60
+              ]
             }
           }
         )

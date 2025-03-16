@@ -29,7 +29,8 @@
     "*.e2e-spec.ts": "ts-test",
     "*.int-spec.ts": "ts-test",
     "*.spec.ts": "ts-test",
-    ".env.example": "gear"
+    ".env.example": "gear",
+    ".env.docker": "gear"
   },
   "cSpell.words": ["asteasolutions", "daos", "divisio", "oklch", "xior"]
 }

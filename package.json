@@ -10,6 +10,7 @@
     "dev:server": "pnpm db:migrate && pnpm setenv pnpm --filter server dev",
     "dev:shared": "pnpm --filter shared dev",
     "build:web": "pnpm build:shared && pnpm --filter web build",
+    "build:web:local": "pnpm build:shared && pnpm setenv pnpm --filter web build",
     "build:server": "pnpm build:shared && pnpm --filter server build",
     "build:shared": "pnpm --filter shared build",
     "start:web": "pnpm --filter web start",
@@ -25,7 +26,7 @@
     "db:seed": "pnpm setenv pnpm --filter server db:seed",
     "db:seed:ci": "pnpm --filter server db:seed",
     "setenv": "dotenv -e .env.local -e .env -o --",
-    "setenv:test": "dotenv -e .env.test --",
+    "setenv:test": "dotenv -e .env.local -e .env.test -o --",
     "compose:up": "docker compose up postgres redis -d"
   },
   "devDependencies": {

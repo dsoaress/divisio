@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { CONSTANTS } from '@/core/constantes'
+import { CONSTANTS } from '@/config/constants'
 import { searchParamsValidator } from '@/validators/search-params.validator'
 
 export const groupsByIdSearchParamsValidator = searchParamsValidator.extend({

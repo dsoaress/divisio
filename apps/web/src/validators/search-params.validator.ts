@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { CONSTANTS } from '@/core/constantes'
+import { CONSTANTS } from '@/config/constants'
 
 export const searchParamsValidator = z.object({
   [CONSTANTS.PAGE]: z

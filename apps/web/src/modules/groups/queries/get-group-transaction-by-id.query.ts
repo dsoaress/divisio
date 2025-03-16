@@ -19,7 +19,7 @@ export function getGroupTransactionByIdQuery(): Query<
     > {
       return api
         .get(`groups/${groupId}/transactions/${groupTransactionId}`, {
-          next: { tags: ['groups', groupId, 'transactions', groupTransactionId], revalidate: 60 }
+          next: { tags: ['groups', groupId, 'transactions', groupTransactionId] }
         })
         .then(({ data }) => data)
     }

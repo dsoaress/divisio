@@ -1,5 +1,7 @@
-import type { Handler, HttpRequest, HttpResponse, Permission } from '@/core/base/http-server'
 import type { FastifyInstance } from 'fastify'
+
+import type { Handler, HttpRequest, HttpResponse, Permission } from '@/core/base/http-server'
+
 import { checkPermission } from './check-permission'
 
 export async function requestHandler<T>(
@@ -20,15 +22,19 @@ export async function requestHandler<T>(
     }
 
     const httpResponse: HttpResponse = {
+      status: code => {
+        res.status(code)
+        return httpResponse
+      },
+      cookie: (name, value, options) => {
+        res.setCookie(name, value, options)
+        return httpResponse
+      },
       send: data => {
         res.send(data)
       },
       redirect: url => {
         res.redirect(url)
-      },
-      status: code => {
-        res.status(code)
-        return httpResponse
       }
     }
 

@@ -1,6 +1,6 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-import { CONSTANTS } from '@/core/constantes'
+import { CONSTANTS } from '@/config/constants'
 
 type Output = {
   search: string

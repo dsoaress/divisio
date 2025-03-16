@@ -2,6 +2,9 @@
 export * from './base/command'
 export * from './base/query'
 
+// Config
+export * from './config/global-constants'
+
 // DTOs
 export * from './dtos/groups/create-group-input.dto'
 export * from './dtos/groups/create-group-output.dto'
@@ -43,6 +46,7 @@ export * from './validators/groups/remove-group-member.validator'
 export * from './validators/groups/update-group-transaction.validator'
 export * from './validators/groups/update-group.validator'
 export * from './validators/users/create-or-update-user.validator'
+export * from './validators/env.validator'
 
 // Value objects
 export * from './value-objects/id.value-object'

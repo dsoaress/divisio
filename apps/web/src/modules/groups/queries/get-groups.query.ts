@@ -7,7 +7,7 @@ export function getGroupsQuery(): Query<void, Promise<QueryResult<GetGroupsOutpu
     async execute(): Promise<QueryResult<GetGroupsOutputDTO>> {
       return api
         .get<QueryResult<GetGroupsOutputDTO>>('groups', {
-          next: { tags: ['groups'], revalidate: 60 }
+          next: { tags: ['groups'] }
         })
         .then(({ data }) => data)
     }

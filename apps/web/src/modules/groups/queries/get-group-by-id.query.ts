@@ -9,7 +9,7 @@ export function getGroupByIdQuery(): Query<
     async execute({ id }: GetGroupByIdInputDTO): Promise<QueryResult<GetGroupByIdOutputDTO>> {
       return api
         .get<QueryResult<GetGroupByIdOutputDTO>>(`groups/${id}`, {
-          next: { tags: ['groups', id], revalidate: 60 }
+          next: { tags: ['groups', id] }
         })
         .then(({ data }) => data)
     }

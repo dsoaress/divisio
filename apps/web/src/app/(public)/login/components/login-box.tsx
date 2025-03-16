@@ -1,0 +1,27 @@
+import { Button } from '@/components/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/card'
+
+import { AppleLogo } from './apple-logo'
+import { GoogleLogin } from './google-login'
+
+export function LoginBox(): React.JSX.Element {
+  return (
+    <Card>
+      <CardHeader className="text-center">
+        <CardTitle className="text-xl">Welcome back</CardTitle>
+        <CardDescription>Login with your Apple or Google account</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="grid gap-6">
+          <div className="flex flex-col gap-4">
+            <Button variant="outline" className="w-full">
+              <AppleLogo />
+              Login with Apple
+            </Button>
+            <GoogleLogin />
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}

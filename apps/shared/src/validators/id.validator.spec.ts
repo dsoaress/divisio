@@ -4,7 +4,7 @@ import { idValidator } from './id.validator'
 describe('idValidator', () => {
   it.each([
     [IdValueObject.create().value, true],
-    ['id', false],
+    [null, false],
     [{}, false]
   ])('should validate the schema: %o (valid: %j)', (data, expected) => {
     const result = idValidator.safeParse(data)

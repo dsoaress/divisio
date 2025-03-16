@@ -69,6 +69,11 @@ export interface HttpRequest<T> {
 
 export interface HttpResponse {
   send: (data: { data: unknown }) => void
+  cookie: (
+    name: string,
+    value: string,
+    options?: { httpOnly?: boolean; secure?: boolean; maxAge?: number; path?: string }
+  ) => HttpResponse
   redirect: (url: string) => void
   status: (code: number) => HttpResponse
 }
