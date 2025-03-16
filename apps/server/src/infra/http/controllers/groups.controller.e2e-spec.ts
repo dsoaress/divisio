@@ -8,7 +8,7 @@ import * as schemas from '@/infra/database/drizzle/schemas'
 import { data } from '@/infra/database/drizzle/seed/data'
 
 const token =
-  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZTNiNWVmZS05ZWUxLTRiNjMtOTE3ZS1jZTc0MzEyYmE5M2MiLCJpYXQiOjE5MjA1MTQ1MzV9.KP9XaFC0Aw1rk3IDYkS0G_KoYkZ6uAJU56tHdp5X_jA'
+  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ3dTQweXBpa215bHFvaGg1andxeGJzaTQiLCJpYXQiOjE5MjA1MTQ1MzV9.jyIUrbCLoNjQnhX8FzzN7nk6GqIx_MIkiI6z-KTOZZE'
 
 describe('[E2E] GroupsController', () => {
   let server: HttpServer

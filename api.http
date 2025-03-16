@@ -1,13 +1,13 @@
 @baseUrl = http://localhost:3000
-@jwtToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZTNiNWVmZS05ZWUxLTRiNjMtOTE3ZS1jZTc0MzEyYmE5M2MiLCJpYXQiOjE5MjA1MTQ1MzV9.KP9XaFC0Aw1rk3IDYkS0G_KoYkZ6uAJU56tHdp5X_jA
-@firstGroupId = 41d33f94-d875-4327-b95b-4fa0f1ace8e7
+@jwtToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ3dTQweXBpa215bHFvaGg1andxeGJzaTQiLCJpYXQiOjE5MjA1MTQ1MzV9.jyIUrbCLoNjQnhX8FzzN7nk6GqIx_MIkiI6z-KTOZZE
+@firstGroupId = adsiiktu8legs3hrbdi62qla
 @newGroupId = {{createGroup.response.body.id}}
-@firstUserId = 6e3b5efe-9ee1-4b63-917e-ce74312ba93c
-@secondUserId = eee51c9a-de9f-42c6-8add-15b7097b30a2
-@thirdUserId = 5909f340-69fa-4db5-a728-47777e017cf7
-@fourthUserId = 85e36457-77ee-412f-9577-8912da5c80c5
-@fifthUserId = 75f9f70b-6cc8-4098-85c8-03b3756e2517
-@firstGroupTransactionId = 3774d0b4-a268-4864-b90f-a26a9dd4c321
+@firstUserId = is0k2tosseuislm4niylbuye
+@secondUserId = wu40ypikmylqohh5jwqxbsi4
+@thirdUserId = ez68vex4lvlpq8w7sncq4h2i
+@fourthUserId = jr9loitvk8i2r562qg3jau4x
+@fifthUserId = gu1sji4idpd9qnmkn2wvwdoq
+@firstGroupTransactionId = mqywrmwz4dfo4tpsqzjaa7a0
 
 # @name healthCheck
 GET {{baseUrl}}/health-check

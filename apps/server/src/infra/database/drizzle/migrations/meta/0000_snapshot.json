@@ -1,5 +1,5 @@
 {
-  "id": "74ae4f4a-1d89-4a40-a31c-a44d2fa398f0",
+  "id": "6b017460-0bb0-4e59-8452-734f9133887c",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -10,13 +10,13 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": true,
           "notNull": true
         },
         "user_id": {
           "name": "user_id",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": false,
           "notNull": true
         },
@@ -47,7 +47,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": true,
           "notNull": true
         },
@@ -102,13 +102,13 @@
       "columns": {
         "group_id": {
           "name": "group_id",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": false,
           "notNull": true
         },
         "member_id": {
           "name": "member_id",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": false,
           "notNull": true
         },
@@ -157,25 +157,25 @@
       "columns": {
         "group_transaction_id": {
           "name": "group_transaction_id",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": false,
           "notNull": true
         },
         "member_id": {
           "name": "member_id",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": false,
           "notNull": true
         },
         "group_id": {
           "name": "group_id",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": false,
           "notNull": true
         },
         "payer_member_id": {
           "name": "payer_member_id",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": false,
           "notNull": true
         },
@@ -242,7 +242,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": true,
           "notNull": true
         },
@@ -260,13 +260,13 @@
         },
         "group_id": {
           "name": "group_id",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": false,
           "notNull": true
         },
         "payer_member_id": {
           "name": "payer_member_id",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": false,
           "notNull": true
         },
@@ -278,7 +278,7 @@
         },
         "created_by": {
           "name": "created_by",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": false,
           "notNull": true
         },
@@ -290,7 +290,7 @@
         },
         "updated_by": {
           "name": "updated_by",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": false,
           "notNull": false
         },
@@ -368,7 +368,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": true,
           "notNull": true
         },
@@ -386,7 +386,7 @@
         },
         "created_by": {
           "name": "created_by",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": false,
           "notNull": true
         },
@@ -398,7 +398,7 @@
         },
         "updated_by": {
           "name": "updated_by",
-          "type": "uuid",
+          "type": "varchar(24)",
           "primaryKey": false,
           "notNull": false
         },

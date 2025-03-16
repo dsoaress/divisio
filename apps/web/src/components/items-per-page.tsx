@@ -1,6 +1,6 @@
 'use client'
 
-import { CONSTANTS } from '@/core/constantes'
+import { CONSTANTS } from '@/config/constants'
 import { usePagination } from '@/hooks/use-pagination'
 
 import {

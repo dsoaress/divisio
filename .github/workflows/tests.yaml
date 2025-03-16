@@ -28,14 +28,8 @@ jobs:
       - name: Lint code
         run: pnpm lint:ci
 
-      - name: Build server
-        run: pnpm build:server
-
-      - name: Build web
-        run: pnpm build:web
-
       - name: Run tests
-        run: pnpm test
+        run: pnpm build:shared && pnpm test
 
       # - name: SonarCloud Scan
       #   uses: SonarSource/sonarcloud-github-action@v4

@@ -1,10 +1,10 @@
-import { randomUUID } from 'node:crypto'
+import { createId } from '@paralleldrive/cuid2'
 
 export class IdValueObject {
   readonly #value: string
 
   private constructor(value?: string) {
-    this.#value = value ?? randomUUID()
+    this.#value = value ?? createId()
   }
 
   static create(value?: string): IdValueObject {

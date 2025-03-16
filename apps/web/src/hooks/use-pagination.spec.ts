@@ -2,7 +2,7 @@ import { act, renderHook } from '@testing-library/react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import type { Mock } from 'vitest'
 
-import { CONSTANTS } from '@/core/constantes'
+import { CONSTANTS } from '@/config/constants'
 import { usePagination } from './use-pagination'
 
 vi.mock('next/navigation', () => ({

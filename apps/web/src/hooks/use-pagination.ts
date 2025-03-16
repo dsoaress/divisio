@@ -1,11 +1,6 @@
-import { CONSTANTS } from '@/core/constantes'
+import { CONSTANTS } from '@/config/constants'
 import { searchParamsValidator } from '@/validators/search-params.validator'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-
-type Input = {
-  defaultPage?: string
-  defaultPerPage?: string
-}
 
 type Output = {
   page: string
@@ -14,12 +9,7 @@ type Output = {
   setPerPage(perPage: string): void
 }
 
-export function usePagination(
-  { defaultPage, defaultPerPage }: Input = {
-    defaultPage: CONSTANTS.DEFAULT_PAGE,
-    defaultPerPage: CONSTANTS.DEFAULT_PER_PAGE
-  }
-): Output {
+export function usePagination(): Output {
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const { replace } = useRouter()
@@ -28,14 +18,14 @@ export function usePagination(
 
   function setPage(page: string): void {
     const params = new URLSearchParams(searchParams.toString())
-    if (page === defaultPage) params.delete(CONSTANTS.PAGE)
+    if (page === CONSTANTS.DEFAULT_PAGE) params.delete(CONSTANTS.PAGE)
     else params.set(CONSTANTS.PAGE, page)
     replace(`${pathname}?${params.toString()}`, { scroll: false })
   }
 
   function setPerPage(perPage: string): void {
     const params = new URLSearchParams(searchParams.toString())
-    if (perPage === defaultPerPage) params.delete(CONSTANTS.PER_PAGE)
+    if (perPage === CONSTANTS.DEFAULT_PER_PAGE) params.delete(CONSTANTS.PER_PAGE)
     else params.set(CONSTANTS.PER_PAGE, perPage)
     params.delete(CONSTANTS.PAGE)
     replace(`${pathname}?${params.toString()}`, { scroll: false })

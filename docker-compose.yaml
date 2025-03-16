@@ -32,12 +32,8 @@ services:
       - postgres
       - redis
     env_file:
-      - .env.local
+      - .env.docker
       - .env
-    environment:
-      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
-      - REDIS_URL=redis://redis:6379
-      - WEB_URL=http://web:3001
     ports:
       - 3000:3000
     networks:
@@ -47,12 +43,24 @@ services:
     build:
       context: .
       dockerfile: apps/web/Dockerfile
+      args:
+        - APP_ENV
+        - SERVER_PORT
+        - WEB_PORT
+        - JWT_SECRET
+        - DATABASE_URL
+        - REDIS_URL
+        - SERVER_URL
+        - WEB_URL
+        - GOOGLE_OAUTH_CLIENT_ID
+        - GOOGLE_CLIENT_SECRET
+        - GOOGLE_OAUTH_REDIRECT_URL
     restart: unless-stopped
     depends_on:
       - server
-    environment:
-      - WEB_PORT=3001
-      - SERVER_URL=http://server:3000
+    env_file:
+      - .env.docker
+      - .env
     ports:
       - 3001:3001
     networks:
