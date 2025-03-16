@@ -11,6 +11,7 @@ export const envValidator = z
     SERVER_URL: z.string().url(),
     PUBLIC_SERVER_URL: z.string().url(),
     WEB_URL: z.string().url(),
+    PUBLIC_WEB_URL: z.string().url(),
     GOOGLE_CLIENT_ID: z.string().optional(),
     GOOGLE_CLIENT_SECRET: z.string().optional(),
     GOOGLE_OAUTH_REDIRECT_URL: z.string().url()

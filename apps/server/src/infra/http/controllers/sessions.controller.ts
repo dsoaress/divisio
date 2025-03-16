@@ -43,9 +43,9 @@ export class SessionsController implements Controller {
             path: '/',
             maxAge: CONSTANTS.COOKIES.REFRESH_TOKEN_MAX_AGE
           })
-          .redirect(`${env.WEB_URL}/groups`)
+          .redirect(`${env.PUBLIC_WEB_URL}/groups`)
       } catch {
-        res.status(httpStatusCode.REDIRECT).redirect(`${env.WEB_URL}/login`)
+        res.status(httpStatusCode.REDIRECT).redirect(`${env.PUBLIC_WEB_URL}/login`)
       }
     })
 
