@@ -8,10 +8,6 @@ type Output = {
 }
 
 export class GoogleOAuthService {
-  private readonly fetchAccessTokenUrl = 'https://oauth2.googleapis.com/token'
-  private readonly fetchUserInfoUrl = (accessToken: string): string =>
-    `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${accessToken}`
-
   async execute(code: string): Promise<Output> {
     const { accessToken, idToken } = await this.fetchAccessToken(code)
     return this.fetchUserInfo(accessToken, idToken)
@@ -27,11 +23,12 @@ export class GoogleOAuthService {
       redirect_uri: env.GOOGLE_OAUTH_REDIRECT_URL,
       grant_type: 'authorization_code'
     }
-    const response = await fetch(this.fetchAccessTokenUrl, {
+    const response = await fetch('https://oauth2.googleapis.com/token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams(options).toString()
     })
+    if (!response.ok) throw new Error('Failed to fetch access token')
     const { access_token, id_token } = (await response.json()) as {
       access_token: string
       id_token: string
@@ -40,10 +37,12 @@ export class GoogleOAuthService {
   }
 
   private async fetchUserInfo(accessToken: string, idToken: string): Promise<Output> {
-    const user = await fetch(this.fetchUserInfoUrl(accessToken), {
-      headers: { Authorization: `Bearer ${idToken}` }
-    })
-    const userInfo = (await user.json()) as {
+    const response = await fetch(
+      `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${accessToken}`,
+      { headers: { Authorization: `Bearer ${idToken}` } }
+    )
+    if (!response.ok) throw new Error('Failed to fetch user')
+    const userInfo = (await response.json()) as {
       given_name: string
       family_name: string
       email: string

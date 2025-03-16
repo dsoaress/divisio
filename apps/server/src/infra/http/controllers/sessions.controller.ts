@@ -29,23 +29,12 @@ export class SessionsController implements Controller {
           userId,
           maxAge: CONSTANTS.COOKIES.REFRESH_TOKEN_MAX_AGE
         })
+        const searchParams = new URLSearchParams({ accessToken, refreshToken })
         res
           .status(httpStatusCode.REDIRECT)
-          .cookie(CONSTANTS.COOKIES.ACCESS_TOKEN, accessToken, {
-            httpOnly: true,
-            secure: true,
-            path: '/',
-            maxAge: CONSTANTS.COOKIES.ACCESS_TOKEN_MAX_AGE
-          })
-          .cookie(CONSTANTS.COOKIES.REFRESH_TOKEN, refreshToken, {
-            httpOnly: true,
-            secure: true,
-            path: '/',
-            maxAge: CONSTANTS.COOKIES.REFRESH_TOKEN_MAX_AGE
-          })
-          .redirect(`${env.PUBLIC_WEB_URL}/groups`)
+          .redirect(`${env.WEB_URL}/api/login?${searchParams.toString()}`)
       } catch {
-        res.status(httpStatusCode.REDIRECT).redirect(`${env.PUBLIC_WEB_URL}/login`)
+        res.status(httpStatusCode.REDIRECT).redirect(`${env.WEB_URL}/login`)
       }
     })
 

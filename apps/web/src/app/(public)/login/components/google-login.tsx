@@ -8,7 +8,7 @@ import { GoogleLogo } from './google-logo'
 function googleOathLogin(): string {
   const rootUrl = 'https://accounts.google.com/o/oauth2/v2/auth'
   const options = {
-    redirect_uri: `${env.PUBLIC_SERVER_URL}/sessions/oauth/google`,
+    redirect_uri: env.GOOGLE_OAUTH_REDIRECT_URL,
     client_id: env.GOOGLE_CLIENT_ID,
     access_type: 'offline',
     response_type: 'code',

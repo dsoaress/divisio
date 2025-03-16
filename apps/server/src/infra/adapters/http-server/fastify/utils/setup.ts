@@ -1,4 +1,3 @@
-import fastifyCookie from '@fastify/cookie'
 import fastifyJwt from '@fastify/jwt'
 
 import { env } from '@/infra/config/env'
@@ -15,7 +14,6 @@ export function setup(server: FastifyInstance): void {
       expiresIn: CONSTANTS.COOKIES.ACCESS_TOKEN_MAX_AGE + 5 // 5 seconds of tolerance
     }
   })
-  server.register(fastifyCookie)
   server.get('/health-check', healthCheckHandler)
   server.setErrorHandler(errorHandler)
 }

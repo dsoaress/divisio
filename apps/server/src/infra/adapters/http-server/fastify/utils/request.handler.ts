@@ -26,10 +26,6 @@ export async function requestHandler<T>(
         res.status(code)
         return httpResponse
       },
-      cookie: (name, value, options) => {
-        res.setCookie(name, value, options)
-        return httpResponse
-      },
       send: data => {
         res.send(data)
       },

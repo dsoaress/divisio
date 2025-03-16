@@ -1,4 +1,3 @@
-import { redirect } from 'next/navigation'
 import xior from 'xior'
 
 import { CONSTANTS } from '@/config/constants'
@@ -21,7 +20,7 @@ api.interceptors.request.use(async config => {
 api.interceptors.response.use(
   response => response,
   error => {
-    if ([401, 403].includes(error?.response?.status ?? 0)) redirect('/login')
+    console.error(error.response?.data || error)
     return Promise.reject(new Error(JSON.stringify(error.response?.data || error, null, 2)))
   }
 )
