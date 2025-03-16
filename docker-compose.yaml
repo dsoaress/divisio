@@ -51,6 +51,7 @@ services:
         - DATABASE_URL
         - REDIS_URL
         - SERVER_URL
+        - PUBLIC_SERVER_URL
         - WEB_URL
         - GOOGLE_OAUTH_CLIENT_ID
         - GOOGLE_CLIENT_SECRET

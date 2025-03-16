@@ -9,6 +9,7 @@ export const envValidator = z
     DATABASE_URL: z.string().url(),
     REDIS_URL: z.string().url(),
     SERVER_URL: z.string().url(),
+    PUBLIC_SERVER_URL: z.string().url(),
     WEB_URL: z.string().url(),
     GOOGLE_CLIENT_ID: z.string().optional(),
     GOOGLE_CLIENT_SECRET: z.string().optional(),
