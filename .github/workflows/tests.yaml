@@ -66,7 +66,7 @@ jobs:
         run: |
           railway link -t workspace -p divisio -s postgres -e divisio-pr-${{ steps.pr_number.outputs.number }} &&
           railway variables -k >> .env &&
-          sed -i '/^DATABASE_URL=/d; s/^DATABASE_PUBLIC_URL=/DATABASE_URL=/'
+          sed -i '/^DATABASE_URL=/d; s/^DATABASE_PUBLIC_URL=/DATABASE_URL=/' .env
 
       - name: Prepare Redis env
         if: github.event_name == 'pull_request'
