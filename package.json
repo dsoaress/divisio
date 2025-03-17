@@ -24,7 +24,6 @@
     "db:migrate": "pnpm compose:up && sleep 5 && pnpm setenv pnpm --filter server db:migrate",
     "db:migrate:ci": "pnpm --filter server db:migrate",
     "db:seed": "pnpm setenv pnpm --filter server db:seed",
-    "db:seed:ci": "pnpm --filter server db:seed",
     "setenv": "dotenv -e .env.local -e .env -o --",
     "setenv:test": "dotenv -e .env.local -e .env.test -o --",
     "compose:up": "docker compose up postgres redis -d"
