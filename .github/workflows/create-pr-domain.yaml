@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Railway
-        run: npm i -g @railway/cli@3.20.2
+        run: npm i -g @railway/cli
 
       - name: Extract PR Number
         id: pr_number
@@ -26,13 +26,13 @@ jobs:
 
       - name: Create domain for server app
         run: |
-          railway link -p divisio -s server -e divisio-pr-${{ steps.pr_number.outputs.number }} &&
+          railway link -t workspace -p divisio -s server -e divisio-pr-${{ steps.pr_number.outputs.number }} &&
           railway variables --set "APP_ENV=staging" \
                             --set "JWT_SECRET=secret" &&
           railway domain
 
       - name: Create domain for web app
         run: |
-          railway link -p divisio -s web -e divisio-pr-${{ steps.pr_number.outputs.number }} &&
+          railway link -t workspace -p divisio -s web -e divisio-pr-${{ steps.pr_number.outputs.number }} &&
           railway variables --set "APP_ENV=staging" &&
           railway domain
