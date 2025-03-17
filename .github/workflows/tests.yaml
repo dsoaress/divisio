@@ -71,7 +71,7 @@ jobs:
 
       - name: Seed database
         if: github.event_name == 'pull_request'
-        run: pnpm db:seed
+        run: cat .env && pnpm db:seed
 
       # - name: SonarCloud Scan
       #   uses: SonarSource/sonarcloud-github-action@v4
