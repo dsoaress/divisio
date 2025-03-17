@@ -34,6 +34,42 @@ jobs:
       - name: Run tests
         run: pnpm test
 
+      - name: Install Railway
+        if: github.event_name == 'pull_request'
+        run: npm i -g @railway/cli
+
+      - name: Extract PR Number
+        id: pr_number
+        if: github.event_name == 'pull_request'
+        run: echo "::set-output name=number::$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')"
+
+      - name: Create domain for server app
+        if: github.event_name == 'pull_request'
+        run: |
+          railway link -t workspace -p divisio -s server -e divisio-pr-${{ steps.pr_number.outputs.number }} &&
+          railway variables --set "APP_ENV=staging" \
+                            --set "JWT_SECRET=secret" &&
+          railway domain -p 3000
+
+      - name: Create domain for web app
+        if: github.event_name == 'pull_request'
+        run: |
+          railway link -t workspace -p divisio -s web -e divisio-pr-${{ steps.pr_number.outputs.number }} &&
+          railway variables --set "APP_ENV=staging" &&
+          railway domain -p 3001
+
+      - name: Prepare envs
+        if: github.event_name == 'pull_request'
+        run: |
+          railway link -t workspace -p divisio -s postgres -e divisio-pr-${{ steps.pr_number.outputs.number }} &&
+          railway variables -k > .env &&
+          sed -i.bak '/^DATABASE_URL=/d; s/^DATABASE_PUBLIC_URL=/DATABASE_URL=/' .env && 
+          rm -f .env.bak
+
+      - name: Seed database
+        if: github.event_name == 'pull_request'
+        run: pnpm seed:db
+
       # - name: SonarCloud Scan
       #   uses: SonarSource/sonarcloud-github-action@v4
       #   env:
