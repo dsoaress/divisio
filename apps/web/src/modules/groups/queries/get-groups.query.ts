@@ -1,3 +1,5 @@
+import 'server-only'
+
 import type { GetGroupsOutputDTO, Query, QueryResult } from 'shared'
 
 import { api } from '@/lib/api'

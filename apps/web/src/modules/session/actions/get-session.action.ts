@@ -1,4 +1,4 @@
-'use server'
+import 'server-only'
 
 import * as jose from 'jose'
 import { cookies } from 'next/headers'

@@ -1,10 +1,14 @@
-import { getGroupsQuery } from '@/modules/groups/queries/get-groups.query'
 import Link from 'next/link'
+
+import { getGroupsQuery } from '@/modules/groups/queries/get-groups.query'
+import { getUserProfileQuery } from '@/modules/users/queries/get-profile.query'
 
 export default async function GroupsPage(): Promise<React.JSX.Element> {
   const getGroups = getGroupsQuery()
+  const getUserProfile = getUserProfileQuery()
   const { data } = await getGroups.execute()
-  if (!data) return <div>Loading...</div>
+  const { data: user } = await getUserProfile.execute()
+
   return (
     <div>
       <h1>Groups</h1>
@@ -19,6 +23,7 @@ export default async function GroupsPage(): Promise<React.JSX.Element> {
           <hr />
         </div>
       ))}
+      <pre>{JSON.stringify(user, null, 2)}</pre>
     </div>
   )
 }

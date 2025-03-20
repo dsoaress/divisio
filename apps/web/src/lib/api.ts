@@ -1,3 +1,5 @@
+import 'server-only'
+
 import xior from 'xior'
 
 import { env } from '@/config/env'

@@ -20,7 +20,7 @@ export function Pagination({ pages }: Readonly<PaginationProps>): React.JSX.Elem
       <div className="flex items-center space-x-2">
         <Button
           variant="outline"
-          className="hidden h-8 w-8 p-0 lg:flex"
+          className="h-8 w-8 p-0"
           onClick={(): void => setPage('1')}
           disabled={page === '1'}
         >
@@ -47,7 +47,7 @@ export function Pagination({ pages }: Readonly<PaginationProps>): React.JSX.Elem
         </Button>
         <Button
           variant="outline"
-          className="hidden h-8 w-8 p-0 lg:flex"
+          className="h-8 w-8 p-0"
           onClick={(): void => setPage(String(pages))}
           disabled={page === String(pages)}
         >
