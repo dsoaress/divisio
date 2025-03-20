@@ -16,6 +16,6 @@ export function cookieOptions(maxAge: number): Output {
     secure: true,
     path: '/',
     domain: env.COOKIE_DOMAIN,
-    sameSite: 'strict'
+    sameSite: 'lax'
   }
 }

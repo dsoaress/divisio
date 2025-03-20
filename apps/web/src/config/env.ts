@@ -3,8 +3,10 @@ import { REFINE_ERROR_MESSAGE, envValidator, envValidatorRefine } from 'shared'
 const parsedEnv = envValidator
   .pick({
     APP_ENV: true,
+    JWT_SECRET: true,
     WEB_PORT: true,
     SERVER_URL: true,
+    WEB_URL: true,
     PUBLIC_SERVER_URL: true,
     COOKIE_DOMAIN: true,
     GOOGLE_CLIENT_ID: true,

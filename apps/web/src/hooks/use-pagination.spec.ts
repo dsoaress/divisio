@@ -57,10 +57,10 @@ describe('usePagination', () => {
     const { result } = renderHook(() => usePagination())
 
     act(() => {
-      result.current.setPerPage('15')
+      result.current.setPerPage('30')
     })
 
-    expect(mockReplace).toHaveBeenCalledWith(`${mockPathname}?${CONSTANTS.PER_PAGE}=15`, {
+    expect(mockReplace).toHaveBeenCalledWith(`${mockPathname}?${CONSTANTS.PER_PAGE}=30`, {
       scroll: false
     })
   })

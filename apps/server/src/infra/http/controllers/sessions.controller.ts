@@ -32,7 +32,7 @@ export class SessionsController implements Controller {
         const searchParams = new URLSearchParams({ accessToken, refreshToken })
         res
           .status(httpStatusCode.REDIRECT)
-          .redirect(`${env.WEB_URL}/api/login?${searchParams.toString()}`)
+          .redirect(`${env.WEB_URL}/api/sessions/login?${searchParams.toString()}`)
       } catch {
         res.status(httpStatusCode.REDIRECT).redirect(`${env.WEB_URL}/login`)
       }

@@ -1,18 +1,31 @@
+import { cookies } from 'next/headers'
 import { type NextRequest, NextResponse } from 'next/server'
 
 import { CONSTANTS } from './config/constants'
+import { env } from './config/env'
 import { api } from './lib/api'
 import { cookieOptions } from './lib/cookie-options'
+import { getSessionAction } from './modules/session/actions/get-session.action'
 
-export async function middleware(request: NextRequest): Promise<NextResponse> {
-  const accessToken = request.cookies.get(CONSTANTS.COOKIES.ACCESS_TOKEN)
-  const refreshToken = request.cookies.get(CONSTANTS.COOKIES.REFRESH_TOKEN)
-  const response = NextResponse.next()
-  if (!accessToken && refreshToken) {
+export async function middleware(request: NextRequest): Promise<NextResponse | undefined> {
+  const { hasExpiredSession, hasValidSession, refreshToken } = await getSessionAction()
+
+  const currentPath = request.nextUrl.pathname
+  const isProtectedRoute = CONSTANTS.PRIVATE_ROUTES.some(route => currentPath.startsWith(route))
+  const isLoginPage = currentPath === '/login'
+
+  const mustAuthenticate = isProtectedRoute && !hasValidSession && !refreshToken
+  const mustRedirectFromLogin = isLoginPage && hasValidSession
+
+  if (mustAuthenticate) return NextResponse.redirect(`${env.WEB_URL}/login`)
+  if (mustRedirectFromLogin) return NextResponse.redirect(`${env.WEB_URL}/groups`)
+
+  if (hasExpiredSession) {
     try {
       const { data } = await api
-        .post('/sessions/refresh', { refreshToken: refreshToken.value })
+        .post('/sessions/refresh', { refreshToken })
         .then(({ data }) => data)
+      const response = NextResponse.next()
       response.cookies
         .set(
           CONSTANTS.COOKIES.ACCESS_TOKEN,
@@ -24,13 +37,15 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
           data.refreshToken,
           cookieOptions(CONSTANTS.COOKIES.REFRESH_TOKEN_MAX_AGE)
         )
+      return response
     } catch {
-      api.defaults.headers = {}
-      response.cookies
-        .delete(CONSTANTS.COOKIES.ACCESS_TOKEN)
-        .delete(CONSTANTS.COOKIES.REFRESH_TOKEN)
+      const cookieStore = await cookies()
+      cookieStore.delete(CONSTANTS.COOKIES.ACCESS_TOKEN).delete(CONSTANTS.COOKIES.REFRESH_TOKEN)
+      return NextResponse.redirect(`${env.WEB_URL}/login`)
     }
   }
+}
 
-  return response
+export const config = {
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)']
 }

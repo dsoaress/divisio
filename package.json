@@ -6,6 +6,7 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
+    "dev": "pnpm setenv pnpm --parallel dev",
     "dev:web": "pnpm setenv pnpm --filter web dev",
     "dev:server": "pnpm db:migrate && pnpm setenv pnpm --filter server dev",
     "dev:shared": "pnpm --filter shared dev",

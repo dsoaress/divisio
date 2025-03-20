@@ -1,6 +1,6 @@
 import { GLOBAL_CONSTANTS } from 'shared'
 
-const DEFAULT_PER_PAGE = '25'
+const DEFAULT_PER_PAGE = '15'
 
 export const CONSTANTS = {
   PAGE: 'p',
@@ -19,6 +19,7 @@ export const CONSTANTS = {
     ORDER_OPTIONS: ['date', 'name', 'amount'],
     DEFAULT_ORDER: 'date'
   },
+  PRIVATE_ROUTES: ['/groups', '/friends', '/settings'],
   STAGING_TOKEN:
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ3dTQweXBpa215bHFvaGg1andxeGJzaTQiLCJpYXQiOjE5MjA1MTQ1MzV9.jyIUrbCLoNjQnhX8FzzN7nk6GqIx_MIkiI6z-KTOZZE',
   ...GLOBAL_CONSTANTS
