@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 
 import { CONSTANTS } from './config/constants'
 import { env } from './config/env'
-import { api } from './lib/api'
+import { httpModule } from './infra/http/http.module'
 import { cookieOptions } from './lib/cookie-options'
 import { getSessionAction } from './modules/session/actions/get-session.action'
 
@@ -20,11 +20,10 @@ export async function middleware(request: NextRequest): Promise<NextResponse | u
   if (mustAuthenticate) return NextResponse.redirect(`${env.WEB_URL}/login`)
   if (mustRedirectFromLogin) return NextResponse.redirect(`${env.WEB_URL}/groups`)
 
-  if (hasExpiredSession) {
+  if (hasExpiredSession && refreshToken) {
     try {
-      const { data } = await api
-        .post('/sessions/refresh', { refreshToken })
-        .then(({ data }) => data)
+      const { refreshSession } = httpModule()
+      const { data } = await refreshSession.execute({ refreshToken })
       const response = NextResponse.next()
       response.cookies
         .set(

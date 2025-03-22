@@ -15,7 +15,7 @@ import {
   TableHeader,
   TableRow
 } from '@/components/table'
-import { getGroupTransactionsByGroupIdQuery } from '@/modules/groups/queries/get-group-transactions-by-group-id.query'
+import { httpModule } from '@/infra/http/http.module'
 
 import { groupsByIdSearchParamsValidator } from '../validators/groups-by-id-search-params.validator'
 
@@ -35,7 +35,7 @@ export async function TransactionsTable({
     o: order,
     d: dir
   } = groupsByIdSearchParamsValidator.parse(await searchParams)
-  const getGroupTransactionsByGroupId = getGroupTransactionsByGroupIdQuery()
+  const { getGroupTransactionsByGroupId } = httpModule()
   const { data: transactions, pages } = await getGroupTransactionsByGroupId.execute({
     groupId,
     page,

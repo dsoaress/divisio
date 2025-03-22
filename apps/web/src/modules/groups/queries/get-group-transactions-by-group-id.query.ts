@@ -7,9 +7,11 @@ import type {
   Query
 } from 'shared'
 
-import { api } from '@/lib/api'
+import type { HttpRequest } from '@/core/base/http-request'
 
-export function getGroupTransactionsByGroupIdQuery(): Query<
+export function getGroupTransactionsByGroupIdQuery(
+  httpRequest: HttpRequest
+): Query<
   Omit<GetGroupTransactionsByGroupIdInputDTO, 'memberId'>,
   Promise<PaginatedQueryResult<GetGroupTransactionsByGroupIdOutputDTO>>
 > {
@@ -21,25 +23,13 @@ export function getGroupTransactionsByGroupIdQuery(): Query<
       order,
       'per-page': perPage,
       search
-    }: Omit<GetGroupTransactionsByGroupIdInputDTO, 'memberId'>): Promise<
-      PaginatedQueryResult<GetGroupTransactionsByGroupIdOutputDTO>
-    > {
-      return api
-        .get<PaginatedQueryResult<GetGroupTransactionsByGroupIdOutputDTO>>(
-          `groups/${groupId}/transactions`,
-          {
-            params: { page, dir, order, 'per-page': perPage, search },
-            next: {
-              tags: [
-                'groups',
-                groupId,
-                'transactions',
-                String({ page, dir, order, perPage, search })
-              ]
-            }
-          }
-        )
-        .then(({ data }) => data)
+    }): Promise<PaginatedQueryResult<GetGroupTransactionsByGroupIdOutputDTO>> {
+      return httpRequest.get(`groups/${groupId}/transactions`, {
+        params: { page, dir, order, 'per-page': perPage, search },
+        next: {
+          tags: ['groups', groupId, 'transactions', String({ page, dir, order, perPage, search })]
+        }
+      })
     }
   }
 }

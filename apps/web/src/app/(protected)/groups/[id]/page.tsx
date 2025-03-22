@@ -1,4 +1,4 @@
-import { getGroupByIdQuery } from '@/modules/groups/queries/get-group-by-id.query'
+import { httpModule } from '@/infra/http/http.module'
 
 import { GroupBalances } from './components/group-balances'
 import { TransactionsTable } from './components/transactions-table'
@@ -13,7 +13,7 @@ export default async function GroupPage({
   searchParams
 }: Readonly<GroupPageProps>): Promise<React.JSX.Element> {
   const { id } = await params
-  const getGroupById = getGroupByIdQuery()
+  const { getGroupById } = httpModule()
   const { data: group } = await getGroupById.execute({ id })
 
   return (

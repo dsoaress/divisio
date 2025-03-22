@@ -1,19 +1,17 @@
 import 'server-only'
 
-import { api } from '@/lib/api'
 import type { GetGroupByIdInputDTO, GetGroupByIdOutputDTO, Query, QueryResult } from 'shared'
 
-export function getGroupByIdQuery(): Query<
-  Pick<GetGroupByIdInputDTO, 'id'>,
-  Promise<QueryResult<GetGroupByIdOutputDTO>>
-> {
+import type { HttpRequest } from '@/core/base/http-request'
+
+export function getGroupByIdQuery(
+  httpRequest: HttpRequest
+): Query<Pick<GetGroupByIdInputDTO, 'id'>, Promise<QueryResult<GetGroupByIdOutputDTO>>> {
   return {
-    async execute({ id }: GetGroupByIdInputDTO): Promise<QueryResult<GetGroupByIdOutputDTO>> {
-      return api
-        .get<QueryResult<GetGroupByIdOutputDTO>>(`groups/${id}`, {
-          next: { tags: ['groups', id] }
-        })
-        .then(({ data }) => data)
+    async execute({ id }): Promise<QueryResult<GetGroupByIdOutputDTO>> {
+      return httpRequest.get(`groups/${id}`, {
+        next: { tags: ['groups', id] }
+      })
     }
   }
 }

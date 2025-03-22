@@ -2,16 +2,14 @@ import 'server-only'
 
 import type { GetGroupsOutputDTO, Query, QueryResult } from 'shared'
 
-import { api } from '@/lib/api'
+import type { HttpRequest } from '@/core/base/http-request'
 
-export function getGroupsQuery(): Query<void, Promise<QueryResult<GetGroupsOutputDTO>>> {
+export function getGroupsQuery(
+  httpRequest: HttpRequest
+): Query<void, Promise<QueryResult<GetGroupsOutputDTO>>> {
   return {
     async execute(): Promise<QueryResult<GetGroupsOutputDTO>> {
-      return api
-        .get<QueryResult<GetGroupsOutputDTO>>('groups', {
-          next: { tags: ['groups'] }
-        })
-        .then(({ data }) => data)
+      return httpRequest.get('groups', { next: { tags: ['groups'] } })
     }
   }
 }

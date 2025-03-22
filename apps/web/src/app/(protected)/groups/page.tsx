@@ -1,11 +1,9 @@
 import Link from 'next/link'
 
-import { getGroupsQuery } from '@/modules/groups/queries/get-groups.query'
-import { getUserProfileQuery } from '@/modules/users/queries/get-profile.query'
+import { httpModule } from '@/infra/http/http.module'
 
 export default async function GroupsPage(): Promise<React.JSX.Element> {
-  const getGroups = getGroupsQuery()
-  const getUserProfile = getUserProfileQuery()
+  const { getGroups, getUserProfile } = httpModule()
   const { data } = await getGroups.execute()
   const { data: user } = await getUserProfile.execute()
 

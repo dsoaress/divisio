@@ -1,6 +1,5 @@
-import type { Mock } from 'vitest'
+import type { HttpRequest } from '@/core/base/http-request'
 
-import { api } from '@/lib/api'
 import { getGroupTransactionsByGroupIdQuery } from './get-group-transactions-by-group-id.query'
 
 vi.mock('@/lib/api', () => ({
@@ -8,6 +7,15 @@ vi.mock('@/lib/api', () => ({
 }))
 
 describe('getGroupTransactionsByGroupIdQuery', () => {
+  let query: ReturnType<typeof getGroupTransactionsByGroupIdQuery>
+  let httpRequest: HttpRequest
+  const getMock = vi.fn()
+
+  beforeEach(() => {
+    httpRequest = { get: getMock } as unknown as HttpRequest
+    query = getGroupTransactionsByGroupIdQuery(httpRequest)
+  })
+
   it('should fetch group by id and return the expected data', async () => {
     const params = {
       groupId: 'groupId',
@@ -17,11 +25,10 @@ describe('getGroupTransactionsByGroupIdQuery', () => {
       'per-page': 50,
       search: 'search'
     } as const
-    ;(api.get as Mock).mockResolvedValueOnce({ data: [] })
-    const query = getGroupTransactionsByGroupIdQuery()
+    getMock.mockResolvedValueOnce({ data: [] })
     const result = await query.execute(params)
 
-    expect(api.get).toHaveBeenCalledWith(`groups/${params.groupId}/transactions`, {
+    expect(getMock).toHaveBeenCalledWith(`groups/${params.groupId}/transactions`, {
       params: {
         page: params.page,
         dir: params.dir,
@@ -44,6 +51,6 @@ describe('getGroupTransactionsByGroupIdQuery', () => {
         ]
       }
     })
-    expect(result).toEqual([])
+    expect(result).toEqual({ data: [] })
   })
 })
