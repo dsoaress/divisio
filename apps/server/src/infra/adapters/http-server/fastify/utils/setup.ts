@@ -1,3 +1,4 @@
+import fastifyCors from '@fastify/cors'
 import fastifyJwt from '@fastify/jwt'
 
 import { env } from '@/infra/config/env'
@@ -14,6 +15,7 @@ export function setup(server: FastifyInstance): void {
       expiresIn: CONSTANTS.COOKIES.ACCESS_TOKEN_MAX_AGE + 5 // 5 seconds of tolerance
     }
   })
+  server.register(fastifyCors, { origin: '*' })
   server.get('/health-check', healthCheckHandler)
   server.setErrorHandler(errorHandler)
 }

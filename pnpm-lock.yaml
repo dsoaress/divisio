@@ -59,6 +59,9 @@ importers:
 
   apps/server:
     dependencies:
+      '@fastify/cors':
+        specifier: 11.0.0
+        version: 11.0.0
       '@fastify/jwt':
         specifier: 9.1.0
         version: 9.1.0
@@ -838,6 +841,9 @@ packages:
   '@fastify/busboy@2.1.1':
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
+
+  '@fastify/cors@11.0.0':
+    resolution: {integrity: sha512-41Bx0LVGr2a6DnnhDN/SgfDlTRNZtEs8niPxyoymV6Hw09AIdz/9Rn/0Fpu+pBOs6kviwS44JY2mB8NcU2qSAA==}
 
   '@fastify/error@4.1.0':
     resolution: {integrity: sha512-KeFcciOr1eo/YvIXHP65S94jfEEqn1RxTRBT1aJaHxY5FK0/GDXYozsQMMWlZoHgi8i0s+YtrLsgj/JkUUjSkQ==}
@@ -2863,6 +2869,9 @@ packages:
   mnemonist@0.39.8:
     resolution: {integrity: sha512-vyWo2K3fjrUw8YeeZ1zF0fy6Mu59RHokURlld8ymdUPjMlD9EC9ov1/YPqTgqRvUN9nTr3Gqfz29LYAmu0PHPQ==}
 
+  mnemonist@0.40.0:
+    resolution: {integrity: sha512-kdd8AFNig2AD5Rkih7EPCXhu/iMvwevQFX/uEiGhZyPZi7fHqOoF4V4kHLpCfysxXMgQ4B52kdPMCwARshKvEg==}
+
   mrmime@2.0.1:
     resolution: {integrity: sha512-Y3wQdFg2Va6etvQ5I82yUhGdsKrcYox6p7FfL1LbK2J4V01F9TGlepTIhnK24t7koZibmg82KGglhA1XK5IsLQ==}
     engines: {node: '>=10'}
@@ -4318,6 +4327,11 @@ snapshots:
       fast-uri: 3.0.6
 
   '@fastify/busboy@2.1.1': {}
+
+  '@fastify/cors@11.0.0':
+    dependencies:
+      fastify-plugin: 5.0.1
+      mnemonist: 0.40.0
 
   '@fastify/error@4.1.0': {}
 
@@ -6227,6 +6241,10 @@ snapshots:
   mkdirp@1.0.4: {}
 
   mnemonist@0.39.8:
+    dependencies:
+      obliterator: 2.0.5
+
+  mnemonist@0.40.0:
     dependencies:
       obliterator: 2.0.5
 

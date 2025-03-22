@@ -19,10 +19,15 @@ export class SessionsController implements Controller {
   ) {}
 
   initialize(): void {
-    this.server.get(PUBLIC, '/sessions/oauth/google', async (req, res) => {
+    this.server.get(PUBLIC, '/sessions/oauth/google', async (_, res) => {
+      const url = this.googleOAuthService.getAuthUrl()
+      res.status(httpStatusCode.REDIRECT).redirect(url)
+    })
+
+    this.server.get(PUBLIC, '/sessions/oauth/google/callback', async (req, res) => {
       try {
         const { code } = req.query
-        const userInfo = await this.googleOAuthService.execute(code)
+        const userInfo = await this.googleOAuthService.fetchUserInfo(code)
         const { id: userId } = await this.createOrUpdateUserCommand.execute(userInfo)
         const accessToken = this.server.signJwt({ sub: userId })
         const { id: refreshToken } = await this.createSessionCommand.execute({
@@ -32,7 +37,7 @@ export class SessionsController implements Controller {
         const searchParams = new URLSearchParams({ accessToken, refreshToken })
         res
           .status(httpStatusCode.REDIRECT)
-          .redirect(`${env.WEB_URL}/api/sessions/login?${searchParams.toString()}`)
+          .redirect(`${env.WEB_URL}/api/sessions/login-callback?${searchParams.toString()}`)
       } catch {
         res.status(httpStatusCode.REDIRECT).redirect(`${env.WEB_URL}/login`)
       }

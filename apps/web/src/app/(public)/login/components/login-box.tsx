@@ -2,7 +2,7 @@ import { Button } from '@/components/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/card'
 
 import { AppleLogo } from './apple-logo'
-import { GoogleLogin } from './google-login'
+import { GoogleLogo } from './google-logo'
 
 export function LoginBox(): React.JSX.Element {
   return (
@@ -18,7 +18,12 @@ export function LoginBox(): React.JSX.Element {
               <AppleLogo />
               Login with Apple
             </Button>
-            <GoogleLogin />
+            <a href="/api/sessions/login-google">
+              <Button variant="outline" className="w-full">
+                <GoogleLogo />
+                Login with Google
+              </Button>
+            </a>
           </div>
         </div>
       </CardContent>
