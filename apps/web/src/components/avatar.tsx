@@ -10,7 +10,8 @@ export function Avatar({
 }: React.ComponentProps<typeof AvatarPrimitive.Root>): React.JSX.Element {
   return (
     <AvatarPrimitive.Root
-      className={cn('relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full', className)}
+      data-slot="avatar"
+      className={cn('relative flex size-8 shrink-0 overflow-hidden rounded-full', className)}
       {...props}
     />
   )
@@ -18,22 +19,29 @@ export function Avatar({
 
 export function AvatarImage({
   className,
+  src,
   ...props
-}: React.ComponentProps<typeof AvatarPrimitive.Image>): React.JSX.Element {
+}: Omit<React.ComponentProps<typeof AvatarPrimitive.Image>, 'src'> & {
+  src?: string | null
+}): React.JSX.Element {
   return (
-    <AvatarPrimitive.Image className={cn('aspect-square h-full w-full', className)} {...props} />
+    <AvatarPrimitive.Image
+      data-slot="avatar-image"
+      className={cn('aspect-square size-full', className)}
+      src={src ?? undefined}
+      {...props}
+    />
   )
 }
+
 export function AvatarFallback({
   className,
   ...props
 }: React.ComponentProps<typeof AvatarPrimitive.Fallback>): React.JSX.Element {
   return (
     <AvatarPrimitive.Fallback
-      className={cn(
-        'flex h-full w-full items-center justify-center rounded-full bg-muted',
-        className
-      )}
+      data-slot="avatar-fallback"
+      className={cn('flex size-full items-center justify-center rounded-full bg-muted', className)}
       {...props}
     />
   )

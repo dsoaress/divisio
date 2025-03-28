@@ -31,7 +31,7 @@ export async function setSessionAction({ accessToken, refreshToken }: Input): Pr
         refreshToken,
         cookieOptions(CONSTANTS.COOKIES.REFRESH_TOKEN_MAX_AGE)
       )
-    redirect('/groups')
+    redirect('/dashboard')
   }
   redirect('/login')
 }

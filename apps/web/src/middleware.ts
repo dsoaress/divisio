@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest): Promise<NextResponse | u
   const mustRedirectFromLogin = isLoginPage && hasValidSession
 
   if (mustAuthenticate) return NextResponse.redirect(`${env.WEB_URL}/login`)
-  if (mustRedirectFromLogin) return NextResponse.redirect(`${env.WEB_URL}/groups`)
+  if (mustRedirectFromLogin) return NextResponse.redirect(`${env.WEB_URL}/dashboard`)
 
   if (hasExpiredSession && refreshToken) {
     try {
