@@ -3,9 +3,8 @@ import Link from 'next/link'
 import { httpModule } from '@/infra/http/http.module'
 
 export default async function GroupsPage(): Promise<React.JSX.Element> {
-  const { getGroups, getUserProfile } = httpModule()
+  const { getGroups } = httpModule()
   const { data } = await getGroups.execute()
-  const { data: user } = await getUserProfile.execute()
 
   return (
     <div>
@@ -21,7 +20,6 @@ export default async function GroupsPage(): Promise<React.JSX.Element> {
           <hr />
         </div>
       ))}
-      <pre>{JSON.stringify(user, null, 2)}</pre>
     </div>
   )
 }

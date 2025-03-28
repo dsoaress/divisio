@@ -19,7 +19,15 @@ export const CONSTANTS = {
     ORDER_OPTIONS: ['date', 'name', 'amount'],
     DEFAULT_ORDER: 'date'
   },
-  PRIVATE_ROUTES: ['/groups', '/friends', '/settings'],
+  PRIVATE_ROUTES: [
+    '/dashboard',
+    '/expenses',
+    '/groups',
+    '/settings',
+    '/settlements',
+    '/upgrade',
+    '/user'
+  ],
   STAGING_TOKEN:
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ3dTQweXBpa215bHFvaGg1andxeGJzaTQiLCJpYXQiOjE5MjA1MTQ1MzV9.jyIUrbCLoNjQnhX8FzzN7nk6GqIx_MIkiI6z-KTOZZE',
   ...GLOBAL_CONSTANTS

@@ -22,7 +22,7 @@ export default function RootLayout({ children }: Readonly<Props>): React.JSX.Ele
   return (
     <html lang="en">
       <body className={`${fontSans.variable} font-sans antialiased`}>
-        <NextTopLoader />
+        <NextTopLoader showSpinner={false} />
         {children}
       </body>
     </html>
