@@ -1,5 +1,14 @@
-import type { GetGroupByIdOutputDTO } from './get-group-by-id-output.dto'
-
-export type GetGroupsOutputDTO = (GetGroupByIdOutputDTO & {
+export type GetGroupsOutputDTO = {
+  id: string
+  name: string
+  description: string
+  currency: string
   balance: number
-})[]
+  lastUpdateAt: string
+  members: {
+    memberId: string
+    firstName: string
+    lastName: string
+    avatar: string | null
+  }[]
+}[]

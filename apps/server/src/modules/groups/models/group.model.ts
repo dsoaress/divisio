@@ -3,6 +3,7 @@ import type { CurrencyDTO, IdValueObject } from 'shared'
 
 export interface GroupModel extends Model {
   name: string
+  description: string
   currency: CurrencyDTO
   members: IdValueObject[]
 }

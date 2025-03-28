@@ -38,7 +38,7 @@ export class GroupsController implements Controller {
     })
 
     this.server.post<{
-      body: Pick<CreateGroupInputDTO, 'name' | 'currency'>
+      body: Pick<CreateGroupInputDTO, 'name' | 'description' | 'currency'>
     }>(PRIVATE, '/groups', async (req, res) => {
       const createdBy = req.userId
       const data = await this.createGroupCommand.execute({ ...req.body, createdBy })

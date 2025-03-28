@@ -18,6 +18,7 @@ describe('CreateGroupCommand', () => {
     const fakeData = groupFake()
     const input = {
       name: fakeData.name,
+      description: fakeData.description,
       currency: fakeData.currency,
       createdBy: fakeData.createdBy.value
     }

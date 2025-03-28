@@ -6,8 +6,7 @@ import * as schema from '../schemas'
 import { data } from './data'
 
 const USERS_COUNT = 5
-const GROUPS_PER_USER = 2
-const GROUPS_COUNT = USERS_COUNT * GROUPS_PER_USER
+const GROUPS_COUNT = 4
 const TRANSACTIONS_PER_USER_PER_GROUP = 70
 
 const {

@@ -1,0 +1,1 @@
+ALTER TABLE "groups" ALTER COLUMN "description" SET NOT NULL;

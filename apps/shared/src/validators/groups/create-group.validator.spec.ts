@@ -2,7 +2,7 @@ import { createGroupValidator } from './create-group.validator'
 
 describe('createGroupValidator', () => {
   it.each([
-    [{ name: 'Group 1', currency: 'USD', createdBy: 'id' }, true],
+    [{ name: 'Group 1', description: 'Description', currency: 'USD', createdBy: 'id' }, true],
     [{ name: 'a'.repeat(2), createdBy: 'id' }, false],
     [{ name: 'a'.repeat(256), createdBy: 'id' }, false],
     [{ name: 1, createdBy: 'id' }, false],

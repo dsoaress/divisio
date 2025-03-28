@@ -21,6 +21,7 @@ export class CreateGroupCommand
     const group: GroupModel = {
       id: IdValueObject.create(),
       name: parsedData.data.name,
+      description: parsedData.data.description,
       currency: parsedData.data.currency,
       members: [],
       createdBy: IdValueObject.create(data.createdBy),

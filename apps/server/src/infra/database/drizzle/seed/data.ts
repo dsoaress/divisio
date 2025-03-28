@@ -19,6 +19,7 @@ type Output = {
   groupsData: {
     id: string
     name: string
+    description: string
     currency: string
     createdBy: string
     createdAt: Date
@@ -57,6 +58,14 @@ const USER_IDS = [
 const FIRST_GROUP_ID = 'adsiiktu8legs3hrbdi62qla'
 const FIRST_GROUP_TRANSACTION_ID = 'mqywrmwz4dfo4tpsqzjaa7a0'
 
+function titleCase(s: string): string {
+  return s
+    .toLowerCase()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
+}
+
 export function data({ usersCount, groupsCount, transactionsPerUserPerGroup }: Input): Output {
   const usersData = Array.from({ length: usersCount }, (_, i) => ({
     id: USER_IDS[i] ?? createId(),
@@ -75,7 +84,8 @@ export function data({ usersCount, groupsCount, transactionsPerUserPerGroup }: I
 
   const groupsData = Array.from({ length: groupsCount }, (_, i) => ({
     id: i === 0 ? FIRST_GROUP_ID : createId(),
-    name: faker.lorem.words(2),
+    name: titleCase(faker.lorem.words(2)),
+    description: faker.lorem.paragraph(1),
     currency: faker.helpers.enumValue(currencies),
     createdBy: usersData[i % usersCount].id,
     createdAt: faker.date.recent()
