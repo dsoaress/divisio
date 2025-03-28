@@ -1,8 +1,10 @@
-import '../styles/globals.css'
+import '@/styles/globals.css'
 
 import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
 import NextTopLoader from 'nextjs-toploader'
+
+import { PostHogProvider } from '@/lib/post-hog-provider'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -23,7 +25,7 @@ export default function RootLayout({ children }: Readonly<Props>): React.JSX.Ele
     <html lang="en">
       <body className={`${fontSans.variable} font-sans antialiased`}>
         <NextTopLoader />
-        {children}
+        <PostHogProvider>{children}</PostHogProvider>
       </body>
     </html>
   )
