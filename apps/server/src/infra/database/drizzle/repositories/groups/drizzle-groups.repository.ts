@@ -10,6 +10,7 @@ import { type CurrencyDTO, IdValueObject } from 'shared'
 type GroupResult = {
   id: string
   name: string
+  description: string
   currency: string
   createdBy: string
   createdAt: Date
@@ -44,6 +45,7 @@ export class DrizzleGroupsRepository implements GroupsRepository {
           .values({
             id: model.id.value,
             name: model.name,
+            description: model.description,
             currency: model.currency,
             createdAt: model.createdAt,
             createdBy: model.createdBy.value
@@ -104,6 +106,7 @@ export class DrizzleGroupsRepository implements GroupsRepository {
         .update(groups)
         .set({
           name: model.name,
+          description: model.description,
           currency: model.currency,
           updatedAt: model.updatedAt,
           updatedBy: model.updatedBy?.value
@@ -128,6 +131,7 @@ export class DrizzleGroupsRepository implements GroupsRepository {
     return {
       id: IdValueObject.create(result.id),
       name: result.name,
+      description: result.description,
       currency: result.currency as CurrencyDTO,
       members: result.members.map(member => IdValueObject.create(member.memberId)),
       createdBy: IdValueObject.create(result.createdBy),

@@ -36,6 +36,7 @@ export class DrizzleGroupsDAO implements GroupsDAO {
       SELECT 
         ${groups.id}, 
         ${groups.name}, 
+        ${groups.description},
         ${groups.currency},
         jsonb_agg(
           jsonb_build_object(
@@ -107,8 +108,14 @@ export class DrizzleGroupsDAO implements GroupsDAO {
     const query = sql`
       SELECT
         ${groups.id}, 
-        ${groups.name}, 
+        ${groups.name},
+        ${groups.description},
         ${groups.currency},
+        (
+          SELECT MAX(GREATEST(${groupTransactions.createdAt}, ${groupTransactions.updatedAt}))
+          FROM ${groupTransactions}
+          WHERE ${groupTransactions.groupId} = ${groups.id}
+        ) AS "lastUpdateAt",
         CAST(COALESCE((
           (SELECT COALESCE(SUM(${groupTransactionParticipants.amount}), 0)
           FROM ${groupTransactionParticipants}
@@ -127,7 +134,15 @@ export class DrizzleGroupsDAO implements GroupsDAO {
             AND EXTRACT(YEAR FROM ${groupTransactions.date}) = EXTRACT(YEAR FROM NOW())
             AND EXTRACT(MONTH FROM ${groupTransactions.date}) = EXTRACT(MONTH FROM NOW())
           )
-        ), 0) AS integer) AS balance
+        ), 0) AS integer) AS balance,
+        (
+          SELECT json_agg(jsonb_build_object(
+            'memberId', ${users.id}, 'firstName', ${users.firstName}, 'lastName', ${users.lastName}, 'avatar', ${users.avatar}
+          ))
+          FROM ${groupMembers}
+          JOIN ${users} ON ${users.id} = ${groupMembers.memberId}
+          WHERE ${groupMembers.groupId} = ${groups.id}
+        ) AS members
       FROM ${groups}
       LEFT JOIN ${groupMembers} ON ${groups.id} = ${groupMembers.groupId}
       WHERE ${groupMembers.memberId} = ${memberId}

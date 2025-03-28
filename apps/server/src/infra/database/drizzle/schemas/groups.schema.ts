@@ -6,6 +6,7 @@ import { users } from './users.schema'
 export const groups = pgTable('groups', {
   id: varchar({ length: 24 }).notNull().primaryKey(),
   name: varchar({ length: 255 }).notNull(),
+  description: varchar({ length: 255 }).notNull(),
   currency: varchar({ length: 3 }).notNull(),
   createdBy: varchar('created_by', { length: 24 })
     .notNull()

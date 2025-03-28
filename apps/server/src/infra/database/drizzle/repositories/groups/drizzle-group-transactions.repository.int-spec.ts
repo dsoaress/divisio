@@ -31,6 +31,7 @@ describe('DrizzleGroupTransactionsRepository', () => {
       await tx.insert(groups).values({
         id: groupId.value,
         name: 'Group 1',
+        description: 'Group Description',
         currency: 'USD',
         createdBy: memberId.value,
         createdAt: new Date()

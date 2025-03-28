@@ -1,9 +1,11 @@
 'use client'
 
 import { BadgeCheck, ChevronsUpDown, CreditCard, LogOut, Sparkles } from 'lucide-react'
+import Link from 'next/link'
 import type { GetUserProfileOutputDTO } from 'shared'
 
-import Link from 'next/link'
+import { getUserInitials } from '@/lib/get-user-initials'
+
 import { Avatar, AvatarFallback, AvatarImage } from './avatar'
 import {
   DropdownMenu,
@@ -33,7 +35,9 @@ export function NavUser({ user }: Readonly<NavUserProps>): React.JSX.Element {
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src={user.avatar} alt={fullName} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarFallback className="rounded-lg">
+                  {getUserInitials(user.firstName, user.lastName)}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">{fullName}</span>

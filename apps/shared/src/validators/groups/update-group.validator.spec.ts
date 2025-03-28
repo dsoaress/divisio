@@ -2,7 +2,10 @@ import { updateGroupValidator } from './update-group.validator'
 
 describe('updateGroupValidator', () => {
   it.each([
-    [{ id: 'id', name: 'Group 1', currency: 'USD', updatedBy: 'id' }, true],
+    [
+      { id: 'id', name: 'Group 1', description: 'Description', currency: 'USD', updatedBy: 'id' },
+      true
+    ],
     [{ id: 'id', updatedBy: 'id' }, true],
     [{ id: 'id', name: true, updatedBy: 'id' }, false],
     [{ id: 'id' }, false],

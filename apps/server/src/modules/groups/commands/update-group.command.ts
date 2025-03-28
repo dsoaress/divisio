@@ -13,6 +13,7 @@ export class UpdateGroupCommand implements Command<UpdateGroupDTO, Promise<void>
     const group = await this.groupsRepository.findById(data.id)
     if (!group) throw new NotFoundException('Group')
     group.name = parsedData.data.name ?? group.name
+    group.description = parsedData.data.description ?? group.description
     group.currency = parsedData.data.currency ?? group.currency
     group.updatedBy = IdValueObject.create(data.updatedBy)
     group.updatedAt = new Date()
