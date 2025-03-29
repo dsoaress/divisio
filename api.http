@@ -33,6 +33,7 @@ Authorization: Bearer {{jwtToken}}
 
 {
   "name": "Group test",
+  "description": "Group test description",
   "currency": "BRL"
 }
 
@@ -80,7 +81,7 @@ Authorization: Bearer {{jwtToken}}
 ###
 
 # @name getGroupTransactionsByGroupId
-GET {{baseUrl}}/groups/{{firstGroupId}}/transactions
+GET {{baseUrl}}/groups/{{firstGroupId}}/transactions?page=1&per-page=20&order=date&dir=desc
 Authorization: Bearer {{jwtToken}}
 
 ###
