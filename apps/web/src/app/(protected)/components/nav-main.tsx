@@ -4,7 +4,7 @@ import { CreditCard, Home, Receipt, Settings2, Users } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { SidebarGroup, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from './sidebar'
+import { SidebarGroup, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/sidebar'
 
 const data = [
   {

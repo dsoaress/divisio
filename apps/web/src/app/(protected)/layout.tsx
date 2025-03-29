@@ -1,6 +1,7 @@
-import { AppSidebar } from '@/components/app-sidebar'
 import { Separator } from '@/components/separator'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/sidebar'
+
+import { AppSidebar } from './components/app-sidebar'
 
 type ProtectedLayoutProps = {
   children: React.ReactNode
