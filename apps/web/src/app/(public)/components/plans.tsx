@@ -29,7 +29,7 @@ const data = [
     popular: true,
     title: 'Premium',
     description: 'For large groups and families.',
-    price: 9.9,
+    price: 990,
     features: [
       'Unlimited groups',
       'Up to 20 members per group',
