@@ -1,8 +1,5 @@
-import { NavUser } from '@/components/nav-user'
-import { httpModule } from '@/infra/http/http.module'
+import { GalleryVerticalEnd } from 'lucide-react'
 
-import { CreditCard } from 'lucide-react'
-import { NavMain } from './nav-main'
 import {
   Sidebar,
   SidebarContent,
@@ -12,7 +9,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail
-} from './sidebar'
+} from '@/components/sidebar'
+import { httpModule } from '@/infra/http/http.module'
+
+import { NavMain } from './nav-main'
+import { NavUser } from './nav-user'
 
 type AppSidebarProps = React.ComponentProps<typeof Sidebar>
 
@@ -27,7 +28,7 @@ export async function AppSidebar({ ...props }: AppSidebarProps): Promise<React.J
             <SidebarMenuButton size="lg" asChild className="hover:bg-transparent">
               <div className="flex items-center gap-2">
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                  <CreditCard className="size-4" />
+                  <GalleryVerticalEnd className="size-4" />
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
                   <span className="font-semibold">Divisio</span>

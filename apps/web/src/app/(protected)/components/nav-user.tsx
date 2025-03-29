@@ -1,20 +1,19 @@
 'use client'
 
-import { BadgeCheck, ChevronsUpDown, CreditCard, LogOut, Sparkles } from 'lucide-react'
+import { BadgeCheck, ChevronsUpDown, GalleryVerticalEnd, LogOut, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 import type { GetUserProfileOutputDTO } from 'shared'
 
-import { getUserInitials } from '@/lib/get-user-initials'
-
-import { Avatar, AvatarFallback, AvatarImage } from './avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from './dropdown-menu'
-import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from './sidebar'
+} from '@/components/dropdown-menu'
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/sidebar'
+import { getUserInitials } from '@/lib/get-user-initials'
 
 type NavUserProps = {
   user: GetUserProfileOutputDTO
@@ -67,7 +66,7 @@ export function NavUser({ user }: Readonly<NavUserProps>): React.JSX.Element {
             </Link>
             <Link href="/user/billing">
               <DropdownMenuItem>
-                <CreditCard className="size-4" />
+                <GalleryVerticalEnd className="size-4" />
                 Billing
               </DropdownMenuItem>
             </Link>
